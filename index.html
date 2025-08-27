@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Wedding of Rama & Ran</title>
+    <title>The Wedding of Rama & Rin</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -11,8 +11,11 @@
     <!-- Google Fonts: Inter and a script font like Great Vibes or Parisienne -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Parisienne&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
     
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -22,14 +25,14 @@
     <style>
         /* Custom styles and Tailwind theme extensions */
         body {
-            font-family: 'Lora', sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: #F0F8FF; /* Light Dusty Rose Background */
         }
         .font-script {
             font-family: 'Playfair Display', serif;
         }
         /* Custom Dusty Rose color palette */
-        .bg-rose-50 { background-color: #87CEEB; }
+        .bg-rose-50 { background-color: #F0F8FF; } /* Swapped with #87CEEB for consistency */
         .bg-rose-100 { background-color: #87CEEB; }
         .bg-rose-600 { background-color: #2F4F4F; }
         .bg-rose-800 { background-color: #2F4F4F; }
@@ -37,6 +40,10 @@
         .text-rose-900 { color: #8C5050; }
         .border-rose-600 { border-color: #D8A0A0; }
         .ring-rose-600 { --tw-ring-color: #D8A0A0; }
+        .text-dark-slate { color: #2F4F4F; }
+        .border-sky-blue { border-color: #87CEEB; }
+        .bg-dark-slate { background-color: #2F4F4F; }
+        .text-white { color: white; }
 
         /* Parallax effect container */
         .parallax-container {
@@ -59,6 +66,11 @@
         .section-content {
             position: relative;
             z-index: 1;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
         }
         .reveal.visible {
             opacity: 1;
@@ -94,7 +106,7 @@
 <body class="bg-rose-50 text-gray-800">
 
 <!-- Audio Player dan Tombol Kontrol -->
-	<audio id="backgroundMusic" loop>
+    <audio id="backgroundMusic" loop>
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
@@ -111,33 +123,17 @@
             <p class="text-lg md:text-xl tracking-widest mb-2">THE WEDDING OF</p>
             <h1 class="font-script text-6xl md:text-8xl mb-4">Rama & Rin</h1>
             <p class="text-lg md:text-xl font-light">Kami mengundang Anda untuk merayakan hari bahagia kami</p>
+            
+            <!-- Countdown Timer di Hero Section -->
             <div id="countdown" class="flex justify-center space-x-4 md:space-x-8 mt-8 text-lg">
-                <div><span id="days" class="block text-4xl font-bold">00</span><span>Hari</span></div>
-                <div><span id="hours" class="block text-4xl font-bold">00</span><span>Jam</span></div>
-                <div><span id="minutes" class="block text-4xl font-bold">00</span><span>Menit</span></div>
-                <div><span id="seconds" class="block text-4xl font-bold">00</span><span>Detik</span></div>
+                <div><span id="hero-days" class="block text-4xl font-bold">00</span><span>Hari</span></div>
+                <div><span id="hero-hours" class="block text-4xl font-bold">00</span><span>Jam</span></div>
+                <div><span id="hero-minutes" class="block text-4xl font-bold">00</span><span>Menit</span></div>
+                <div><span id="hero-seconds" class="block text-4xl font-bold">00</span><span>Detik</span></div>
             </div>
         </div>
         <div class="absolute bottom-10 z-20 animate-bounce">
             <i data-lucide="chevrons-down" class="w-8 h-8 text-white"></i>
-        </div>
-    </section>
-
-	<section id="event" class="py-20 px-4 bg-white">
-        <div class="container mx-auto max-w-5xl text-center">
-            <div class="reveal">
-                <h2 class="text-4xl md:text-5xl font-display text-dark-slate mb-12">🗓️ Save The Date</h2>
-            </div>
-            <div id="countdown" class="flex justify-center space-x-4 md:space-x-8 text-center my-12 reveal">
-                <div><div id="days" class="text-4xl md:text-6xl font-display text-dark-slate">00</div><div class="text-sm uppercase tracking-wider">Hari</div></div>
-                <div><div id="hours" class="text-4xl md:text-6xl font-display text-dark-slate">00</div><div class="text-sm uppercase tracking-wider">Jam</div></div>
-                <div><div id="minutes" class="text-4xl md:text-6xl font-display text-dark-slate">00</div><div class="text-sm uppercase tracking-wider">Menit</div></div>
-                <div><div id="seconds" class="text-4xl md:text-6xl font-display text-dark-slate">00</div><div class="text-sm uppercase tracking-wider">Detik</div></div>
-            </div>
-            <div class="grid md:grid-cols-2 gap-12 mt-16">
-                <div class="p-8 border-2 border-sky-blue rounded-lg reveal"><h3 class="text-3xl font-display text-dark-slate mb-4">💍 Akad Nikah</h3><p class="font-semibold">Kamis, 4 September 2025</p><p>Pukul 09:00 WITA</p><div class="w-16 h-px bg-sky-blue mx-auto my-4"></div><p>Kediaman mempelai wanita: Jl. Poros Wamengkoli, Desa Nepa Mekar, Kecamatan Lakudo, Kabupaten Buton Tengah, Provinsi Sulawesi Tenggara.</p></div>
-                <div class="p-8 border-2 border-sky-blue rounded-lg reveal"><h3 class="text-3xl font-display text-dark-slate mb-4">🎉 Resepsi</h3><p class="font-semibold">Kamis, 4 September 2025</p><p>Pukul 13:00 WITA - Selesai</p><div class="w-16 h-px bg-sky-blue mx-auto my-4"></div><p>Kediaman mempelai wanita: Jl. Poros Wamengkoli, Desa Nepa Mekar, Kecamatan Lakudo, Kabupaten Buton Tengah, Provinsi Sulawesi Tenggara.</p></div>
-            </div>
         </div>
     </section>
 
@@ -170,12 +166,6 @@
             <h2 class="font-script text-5xl text-rose-800 mb-12" data-aos="fade-up">🗓️ Save The Date</h2>
             <div class="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16">
                 <!-- Akad Nikah -->
-              	<div id="countdown" class="flex justify-center space-x-4 md:space-x-8 text-center my-12 reveal">
-                <div><div id="days" class="text-4xl md:text-6xl font-display text-dark-slate">00</div><div class="text-sm uppercase tracking-wider">Hari</div></div>
-                <div><div id="hours" class="text-4xl md:text-6xl font-display text-dark-slate">00</div><div class="text-sm uppercase tracking-wider">Jam</div></div>
-                <div><div id="minutes" class="text-4xl md:text-6xl font-display text-dark-slate">00</div><div class="text-sm uppercase tracking-wider">Menit</div></div>
-                <div><div id="seconds" class="text-4xl md:text-6xl font-display text-dark-slate">00</div><div class="text-sm uppercase tracking-wider">Detik</div></div>
-            </div>
                 <div class="w-full md:w-1/2 bg-white p-8 rounded-xl shadow-lg" data-aos="zoom-in">
                     <i data-lucide="gem" class="w-12 h-12 text-rose-600 mx-auto mb-4"></i>
                     <h3 class="text-3xl font-semibold text-rose-900 mb-2">💍 Akad Nikah</h3>
@@ -198,13 +188,18 @@
                     </p>
                 </div>
             </div>
-             <!-- Google Maps -->
-                <section id="location" class="py-20 px-4">
+        </div>
+    </section>
+    
+    <!-- Location Section -->
+    <section id="location" class="py-20 px-4">
         <div class="container mx-auto max-w-4xl text-center">
             <div class="reveal">
-                <h2 class="text-4xl md:text-5xl font-display text-dark-slate mb-8">📍 Lokasi Acara</h2>
-                <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-lg mt-8"><iframe src="https://www.google.com/maps/embed?pb=!1e3!4m2!3m1!1s0x2da159982780a96b:0x5e5bce90c1f5d68d" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
-                 <a href="https://maps.app.goo.gl/wS78pG17T5fJkE5w8" target="_blank" class="inline-block mt-8 btn-custom py-3 px-6 rounded-lg font-semibold"><i class="fas fa-map-marker-alt mr-2"></i>Buka di Google Maps</a>
+                <h2 class="text-4xl md:text-5xl font-script text-rose-800 mb-8">📍 Lokasi Acara</h2>
+                <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-lg mt-8">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1e3!4m2!3m1!1s0x2da159982780a96b:0x5e5bce90c1f5d68d" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <a href="https://maps.app.goo.gl/wS78pG17T5fJkE5w8" target="_blank" class="inline-block mt-8 btn-custom py-3 px-6 rounded-lg font-semibold"><i class="fas fa-map-marker-alt mr-2"></i>Buka di Google Maps</a>
             </div>
         </div>
     </section>
@@ -225,11 +220,11 @@
             <h2 class="font-script text-5xl text-rose-800 mb-12" data-aos="fade-up">Momen Bahagia</h2>
             <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                 <div data-aos="zoom-in-up"><img src="https://lh3.googleusercontent.com/d/1f8UAGNjJAEzNq6Jj6C6MuGz3m6i0oyBS" alt="Gallery Photo 1" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300"></div>
-                <div data-aos="zoom-in-up" data-aos-delay="100"><img src="https://drive.google.com/file/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps/view?usp=drive_link" alt="Gallery Photo 2" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300"></div>
-                <div data-aos="zoom-in-up" data-aos-delay="200"><img src="https://drive.google.com/file/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps/view?usp=drive_link" alt="Gallery Photo 3" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300"></div>
-                <div data-aos="zoom-in-up" data-aos-delay="300"><img src="https://drive.google.com/file/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps/view?usp=drive_link" alt="Gallery Photo 4" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300"></div>
-                <div data-aos="zoom-in-up" data-aos-delay="400"><img src="https://drive.google.com/file/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps/view?usp=drive_link" alt="Gallery Photo 5" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300"></div>
-                <div data-aos="zoom-in-up" data-aos-delay="500"><img src="https://drive.google.com/file/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps/view?usp=drive_link" alt="Gallery Photo 6" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300"></div>
+                <div data-aos="zoom-in-up" data-aos-delay="100"><img src="https://lh3.googleusercontent.com/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps" alt="Gallery Photo 2" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300"></div>
+                <div data-aos="zoom-in-up" data-aos-delay="200"><img src="https://lh3.googleusercontent.com/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps" alt="Gallery Photo 3" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300"></div>
+                <div data-aos="zoom-in-up" data-aos-delay="300"><img src="https://lh3.googleusercontent.com/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps" alt="Gallery Photo 4" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300"></div>
+                <div data-aos="zoom-in-up" data-aos-delay="400"><img src="https://lh3.googleusercontent.com/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps" alt="Gallery Photo 5" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300"></div>
+                <div data-aos="zoom-in-up" data-aos-delay="500"><img src="https://lh3.googleusercontent.com/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps" alt="Gallery Photo 6" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300"></div>
             </div>
         </div>
     </section>
@@ -243,27 +238,29 @@
                 <p class="text-gray-600 leading-relaxed mb-8">
                     Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Namun jika memberi adalah ungkapan tanda kasih, Anda dapat memberi kado secara cashless.
                 </p>
-                <div class="bg-rose-50 p-6 rounded-lg shadow-inner inline-block">
+                <!-- Bank Muamalat -->
+                <div class="bg-rose-50 p-6 rounded-lg shadow-inner mb-4">
                     <p class="text-lg font-semibold text-rose-900">Bank Muamalat</p>
-                    <p id="rekening" class="text-2xl font-bold text-gray-800 my-2">8010117178</p>
+                    <p id="rekening-muamalat" class="text-2xl font-bold text-gray-800 my-2">8010117178</p>
                     <p class="text-md text-gray-700">a/n MIFTAH KHAIRANI</p>
                 </div>
-                <button id="copyButton" class="mt-6 bg-rose-600 text-white px-6 py-3 rounded-lg hover:bg-rose-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-600 flex items-center mx-auto">
+                <button id="copyButton-muamalat" class="mt-2 btn-custom px-6 py-3 rounded-lg flex items-center mx-auto">
                     <i data-lucide="copy" class="w-4 h-4 mr-2"></i>
                     Salin No. Rekening
                 </button>
-                <p id="copyMessage" class="text-green-600 mt-2 h-4"></p>
-            </div>
-            <div class="bg-rose-50 p-6 rounded-lg shadow-inner inline-block">
+                <p id="copyMessage-muamalat" class="text-green-600 mt-2 h-4"></p>
+                
+                <!-- BRI -->
+                <div class="bg-rose-50 p-6 rounded-lg shadow-inner mt-8">
                     <p class="text-lg font-semibold text-rose-900">BRI</p>
-                    <p id="rekening" class="text-2xl font-bold text-gray-800 my-2">504201016983530</p>
+                    <p id="rekening-bri" class="text-2xl font-bold text-gray-800 my-2">504201016983530</p>
                     <p class="text-md text-gray-700">a/n MIFTAH KHAIRANI</p>
                 </div>
-                <button id="copyButton" class="mt-6 bg-rose-600 text-white px-6 py-3 rounded-lg hover:bg-rose-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-600 flex items-center mx-auto">
+                <button id="copyButton-bri" class="mt-2 btn-custom px-6 py-3 rounded-lg flex items-center mx-auto">
                     <i data-lucide="copy" class="w-4 h-4 mr-2"></i>
                     Salin No. Rekening
                 </button>
-                <p id="copyMessage" class="text-green-600 mt-2 h-4"></p>
+                <p id="copyMessage-bri" class="text-green-600 mt-2 h-4"></p>
             </div>
         </div>
     </section>
@@ -285,7 +282,7 @@
                         <label for="ucapan" class="block text-gray-700 mb-2">Ucapan</label>
                         <textarea id="ucapan" name="ucapan" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-600" required></textarea>
                     </div>
-                    <button type="submit" class="w-full bg-rose-600 text-white px-6 py-3 rounded-lg hover:bg-rose-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-600">
+                    <button type="submit" class="w-full btn-custom px-6 py-3 rounded-lg">
                         Kirim Ucapan
                     </button>
                 </form>
@@ -308,8 +305,8 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({
-            duration: 1000, // values from 0 to 3000, with step 50ms
-            once: true, // whether animation should happen only once - while scrolling down
+            duration: 1000,
+            once: true,
         });
     </script>
     
@@ -322,7 +319,9 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Countdown Timer
-            const countdownDate = new Date("2025-08-27T10:00:00").getTime();
+            // Note: The event time is set to 10:00 WITA (GMT+8), but the code uses a local time string.
+            // For production, you should use a UTC-based timestamp or handle time zones carefully.
+            const countdownDate = new Date("September 4, 2025 10:00:00").getTime();
 
             const countdownFunction = setInterval(function() {
                 const now = new Date().getTime();
@@ -333,46 +332,80 @@
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                document.getElementById("days").innerText = days.toString().padStart(2, '0');
-                document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
-                document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
-                document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+                // Update countdown in the hero section
+                const heroDays = document.getElementById("hero-days");
+                const heroHours = document.getElementById("hero-hours");
+                const heroMinutes = document.getElementById("hero-minutes");
+                const heroSeconds = document.getElementById("hero-seconds");
+                const countdownContainer = document.getElementById("countdown");
+
+                if (heroDays && heroHours && heroMinutes && heroSeconds) {
+                    heroDays.innerText = days.toString().padStart(2, '0');
+                    heroHours.innerText = hours.toString().padStart(2, '0');
+                    heroMinutes.innerText = minutes.toString().padStart(2, '0');
+                    heroSeconds.innerText = seconds.toString().padStart(2, '0');
+                }
 
                 if (distance < 0) {
                     clearInterval(countdownFunction);
-                    document.getElementById("countdown").innerHTML = "<div class='text-2xl'>The event has started!</div>";
+                    if (countdownContainer) {
+                        countdownContainer.innerHTML = "<div class='text-2xl text-white'>ACARA SUDAH DIMULAI!</div>";
+                    }
                 }
             }, 1000);
 
-            // Copy to Clipboard
-            const copyButton = document.getElementById('copyButton');
-            const copyMessage = document.getElementById('copyMessage');
-            const rekeningNumber = document.getElementById('rekening').innerText;
+            // Function to handle copy to clipboard
+            function setupCopyButton(buttonId, rekeningId, messageId) {
+                const copyButton = document.getElementById(buttonId);
+                const rekeningNumber = document.getElementById(rekeningId).innerText;
+                const copyMessage = document.getElementById(messageId);
 
-            copyButton.addEventListener('click', () => {
-                const tempInput = document.createElement('input');
-                tempInput.value = rekeningNumber;
-                document.body.appendChild(tempInput);
-                tempInput.select();
-                document.execCommand('copy');
-                document.body.removeChild(tempInput);
+                if (copyButton) {
+                    copyButton.addEventListener('click', () => {
+                        const tempInput = document.createElement('input');
+                        tempInput.value = rekeningNumber;
+                        document.body.appendChild(tempInput);
+                        tempInput.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(tempInput);
 
-                copyMessage.innerText = 'Nomor rekening berhasil disalin!';
-                setTimeout(() => {
-                    copyMessage.innerText = '';
-                }, 2000);
-            });
+                        copyMessage.innerText = 'Nomor rekening berhasil disalin!';
+                        setTimeout(() => {
+                            copyMessage.innerText = '';
+                        }, 2000);
+                    });
+                }
+            }
+
+            // Setup copy buttons for both accounts
+            setupCopyButton('copyButton-muamalat', 'rekening-muamalat', 'copyMessage-muamalat');
+            setupCopyButton('copyButton-bri', 'rekening-bri', 'copyMessage-bri');
+            
+            // Music Control
+            const backgroundMusic = document.getElementById('backgroundMusic');
+            const musicControl = document.getElementById('musicControl');
+            const musicIcon = document.getElementById('musicIcon');
+            let isPlaying = false;
+
+            if (musicControl) {
+                musicControl.addEventListener('click', () => {
+                    if (isPlaying) {
+                        backgroundMusic.pause();
+                        musicIcon.classList.remove('fa-pause');
+                        musicIcon.classList.add('fa-play');
+                    } else {
+                        backgroundMusic.play();
+                        musicIcon.classList.remove('fa-play');
+                        musicIcon.classList.add('fa-pause');
+                    }
+                    isPlaying = !isPlaying;
+                });
+            }
 
             // Guestbook
             const guestbookForm = document.getElementById('guestbookForm');
             const ucapanList = document.getElementById('ucapanList');
             
-            // Dummy data for initial view
-            const initialWishes = [
-                { name: 'Sahabat Baik', wish: 'Selamat menempuh hidup baru Axel & Lala! Semoga menjadi keluarga yang sakinah, mawaddah, warahmah. Bahagia selalu!' },
-                { name: 'Rekan Kerja', wish: 'Happy wedding! Semoga cinta kalian abadi selamanya. Turut berbahagia.' }
-            ];
-
             function displayWishes(wishes) {
                 ucapanList.innerHTML = '';
                 wishes.forEach(item => {
@@ -394,30 +427,26 @@
                     ucapanList.appendChild(wishElement);
                 });
             }
-
-            // Load wishes from localStorage or use initial data
-            let wishes = JSON.parse(localStorage.getItem('weddingWishes')) || initialWishes;
+            
+            let wishes = JSON.parse(localStorage.getItem('weddingWishes')) || [];
             displayWishes(wishes);
 
-            guestbookForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const name = e.target.nama.value;
-                const wish = e.target.ucapan.value;
+            if (guestbookForm) {
+                guestbookForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = e.target.nama.value;
+                    const wish = e.target.ucapan.value;
 
-                const newWish = { name, wish };
-                wishes.unshift(newWish); // Add new wish to the beginning
-                
-                // Save to localStorage
-                localStorage.setItem('weddingWishes', JSON.stringify(wishes));
-                
-                displayWishes(wishes);
-                guestbookForm.reset();
-            });
+                    const newWish = { name, wish };
+                    wishes.unshift(newWish);
+                    
+                    localStorage.setItem('weddingWishes', JSON.stringify(wishes));
+                    
+                    displayWishes(wishes);
+                    guestbookForm.reset();
+                });
+            }
         });
     </script>
 </body>
-
 </html>
-
-
-
