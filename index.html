@@ -21,7 +21,7 @@
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
-  <!-- AOS (Animate On Scroll) -->
+  <!-- AOS -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
   <style>
@@ -29,80 +29,170 @@
       font-family: 'Inter', sans-serif;
       background-color: #F0F8FF; /* AliceBlue */
     }
+    .font-script { font-family: 'Playfair Display', serif; }
 
-    .font-script {
-      font-family: 'Playfair Display', serif;
-    }
+    /* Sky Blue Palette */
+    .bg-sky-50 { background-color: #F0F8FF; }
+    .bg-sky-100 { background-color: #E0F7FF; }
+    .bg-sky-600 { background-color: #1E3A8A; }
+    .bg-sky-800 { background-color: #1E3A8A; }
 
-    /* Sky Blue Color Palette */
-    .bg-sky-50 {
-      background-color: #F0F8FF;
-    }
+    .text-sky-600 { color: #0EA5E9; }
+    .text-sky-800 { color: #1E3A8A; }
+    .text-sky-900 { color: #0F172A; }
 
-    .bg-sky-100 {
-      background-color: #87CEEB;
-    }
+    .border-sky-600 { border-color: #1E3A8A; }
+    .ring-sky-600 { --tw-ring-color: #1E3A8A; }
 
-    .bg-sky-600 {
-      background-color: #1E3A8A;
-    }
+    .bg-dark-blue { background-color: #1E3A8A; }
+    .text-white { color: white; }
 
-    .bg-sky-800 {
-      background-color: #1E3A8A;
-    }
-
-    .text-sky-800 {
-      color: #1E3A8A;
-    }
-
-    .text-sky-900 {
-      color: #0F172A;
-    }
-
-    .border-sky-600 {
-      border-color: #1E3A8A;
-    }
-
-    .ring-sky-600 {
-      --tw-ring-color: #1E3A8A;
-    }
-
-    .text-dark-blue {
-      color: #1E3A8A;
-    }
-
-    .bg-dark-blue {
-      background-color: #1E3A8A;
-    }
-
-    .text-white {
-      color: white;
-    }
-
-    /* Button Custom */
     .btn-custom {
       background-color: #1E3A8A;
       color: #F0F8FF;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-
     .btn-custom:hover {
       background-color: #87CEEB;
       color: #1E3A8A;
       transform: translateY(-2px);
-      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 6px 8px rgba(0,0,0,0.15);
     }
-
-    * {
-      transition: all 0.3s ease-in-out;
-    }
+    * { transition: all 0.3s ease-in-out; }
   </style>
 </head>
 <body class="bg-sky-50 text-gray-800">
 
-  <!-- sisanya (hero, invitation, details, gallery, guestbook, footer, dll) tetap sama -->
-  <!-- cukup ganti semua class bg-rose-*, text-rose-*, border-rose-* dengan bg-sky-*, text-sky-*, border-sky-* -->
+<!-- Tombol Musik -->
+<audio id="backgroundMusic" loop>
+  <source src="https://github.com/Haeratunnisa/wedding-site/blob/main/audio/You%20Are%20The%20Reason.mp3" type="audio/mpeg">
+</audio>
+<button id="musicControl" class="fixed bottom-5 right-5 z-50 w-12 h-12 rounded-full bg-dark-blue text-white flex items-center justify-center shadow-lg">
+  <i id="musicIcon" class="fas fa-play"></i>
+</button>
 
+<!-- Hero -->
+<section id="hero" class="relative h-screen flex flex-col items-center justify-center text-white text-center overflow-hidden">
+  <div class="absolute inset-0 bg-black opacity-40 z-10"></div>
+  <div class="parallax-bg" style="background-image: url('https://lh3.googleusercontent.com/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps');"></div>
+  <div class="relative z-20 p-4" data-aos="fade-up">
+    <p class="text-lg md:text-xl tracking-widest mb-2">THE WEDDING OF</p>
+    <h1 class="font-script text-6xl md:text-8xl mb-4">Rama & Rin</h1>
+    <p class="text-lg md:text-xl font-light">Kami mengundang Anda untuk merayakan hari bahagia kami</p>
+    <p class="text-lg md:text-xl font-light">Kamis, 04 September 2025</p>
+
+    <div id="countdown" class="flex justify-center space-x-4 md:space-x-8 mt-8 text-lg">
+      <div><span id="hero-days" class="block text-4xl font-bold">00</span><span>Hari</span></div>
+      <div><span id="hero-hours" class="block text-4xl font-bold">00</span><span>Jam</span></div>
+      <div><span id="hero-minutes" class="block text-4xl font-bold">00</span><span>Menit</span></div>
+      <div><span id="hero-seconds" class="block text-4xl font-bold">00</span><span>Detik</span></div>
+    </div>
+  </div>
+  <div class="absolute bottom-10 z-20 animate-bounce">
+    <i data-lucide="chevrons-down" class="w-8 h-8 text-white"></i>
+  </div>
+</section>
+
+<!-- Invitation -->
+<section id="invitation" class="py-20 px-6 bg-white">
+  <div class="max-w-4xl mx-auto text-center">
+    <i data-lucide="heart" class="w-16 h-16 text-sky-600 mx-auto mb-6"></i>
+    <h2 class="font-script text-5xl text-sky-800 mb-4">Dengan Rahmat Allah SWT</h2>
+    <p class="text-gray-600">Dengan memohon rahmat dan ridho Tuhan Yang Maha Esa, kami bermaksud menyelenggarakan acara pernikahan...</p>
+    <div class="mt-12 grid md:grid-cols-2 gap-12 text-left">
+      <div class="bg-sky-50 p-8 rounded-lg shadow-md">
+        <h3 class="font-script text-4xl text-sky-900 mb-4">Muhamad Rama...</h3>
+        <p class="text-gray-700">Putra dari...</p>
+      </div>
+      <div class="bg-sky-50 p-8 rounded-lg shadow-md">
+        <h3 class="font-script text-4xl text-sky-900 mb-4">Miftah Khairani...</h3>
+        <p class="text-gray-700">Putri dari...</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Details -->
+<section id="details" class="py-20 px-6 bg-sky-50">
+  <div class="max-w-5xl mx-auto text-center">
+    <h2 class="font-script text-5xl text-sky-800 mb-12">🗓️ Save The Date</h2>
+    <div class="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16">
+      <div class="w-full md:w-1/2 bg-white p-8 rounded-xl shadow-lg">
+        <i data-lucide="gem" class="w-12 h-12 text-sky-600 mx-auto mb-4"></i>
+        <h3 class="text-3xl font-semibold text-sky-900 mb-2">💍 Akad Nikah</h3>
+        <p class="text-lg text-gray-600">Kamis, 04 September 2025</p>
+      </div>
+      <div class="w-full md:w-1/2 bg-white p-8 rounded-xl shadow-lg">
+        <i data-lucide="glass-water" class="w-12 h-12 text-sky-600 mx-auto mb-4"></i>
+        <h3 class="text-3xl font-semibold text-sky-900 mb-2">Resepsi</h3>
+        <p class="text-lg text-gray-600">Kamis, 04 September 2025</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section id="gallery" class="py-20 px-6 bg-sky-50">
+  <div class="max-w-6xl mx-auto text-center">
+    <h2 class="font-script text-5xl text-sky-800 mb-12">Momen Bahagia</h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <div><img src="https://lh3.googleusercontent.com/d/1f8UAGNjJAEzNq6Jj6C6MuGz3m6i0oyBS" class="rounded-lg shadow-md"></div>
+      <!-- Tambahkan foto lain -->
+    </div>
+  </div>
+</section>
+
+<!-- Gift -->
+<section id="gift" class="py-20 px-6 bg-white">
+  <div class="max-w-4xl mx-auto text-center">
+    <i data-lucide="gift" class="w-16 h-16 text-sky-600 mx-auto mb-6"></i>
+    <h2 class="font-script text-5xl text-sky-800 mb-4">Wedding Gift</h2>
+    <div class="flex flex-col md:flex-row justify-center items-center gap-8">
+      <div class="w-full md:w-1/2 bg-sky-50 p-6 rounded-lg shadow-inner">
+        <p class="text-lg font-semibold text-sky-900">Bank Muamalat</p>
+        <p class="text-2xl font-bold text-gray-800 my-2">8010117178</p>
+      </div>
+      <div class="w-full md:w-1/2 bg-sky-50 p-6 rounded-lg shadow-inner">
+        <p class="text-lg font-semibold text-sky-900">BRI</p>
+        <p class="text-2xl font-bold text-gray-800 my-2">504201016983530</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Guestbook -->
+<section id="guestbook" class="py-20 px-6 bg-sky-50">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="font-script text-5xl text-sky-800 mb-4">Buku Tamu</h2>
+    <p class="text-gray-600">Berikan ucapan dan doa restu</p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-12 bg-sky-800 text-white text-center">
+  <p>Terima kasih atas doa restu Anda</p>
+  <p class="font-script text-4xl my-4">Rama & Rin</p>
+  <p class="text-sm text-sky-100">&copy; 2025. nisaDev.</p>
+</footer>
+
+<!-- Script -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script> AOS.init({ duration: 1000, once: true }); </script>
+<script> lucide.createIcons(); </script>
+<script>
+  const music = document.getElementById('backgroundMusic');
+  const control = document.getElementById('musicControl');
+  const icon = document.getElementById('musicIcon');
+  let playing = false;
+  control.addEventListener('click', () => {
+    if (playing) {
+      music.pause(); icon.classList.replace('fa-pause','fa-play');
+    } else {
+      music.play(); icon.classList.replace('fa-play','fa-pause');
+    }
+    playing = !playing;
+  });
+</script>
 </body>
 </html>
