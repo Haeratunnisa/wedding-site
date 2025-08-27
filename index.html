@@ -1,385 +1,474 @@
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Wedding of Rama & Ran</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Inter and a script font like Great Vibes or Parisienne -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Parisienne&display=swap" rel="stylesheet">
-    
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wedding of Rama & Ran</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter and a script font like Great Vibes or Parisienne -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Parisienne&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- AOS (Animate On Scroll) Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <style>
-        /* Custom styles and Tailwind theme extensions */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #89CFF0; /* Light Dusty Rose Background */
-        }
-        .font-script {
-            font-family: 'Parisienne', cursive;
-        }
-        /* Custom Dusty Rose color palette */
-        .bg-rose-50 { background-color: #FEF6F6; }
-        .bg-rose-100 { background-color: #FBE7E7; }
-        .bg-rose-600 { background-color: #D8A0A0; }
-        .bg-rose-800 { background-color: #B07070; }
-        .text-rose-800 { color: #B07070; }
-        .text-rose-900 { color: #8C5050; }
-        .border-rose-600 { border-color: #D8A0A0; }
-        .ring-rose-600 { --tw-ring-color: #D8A0A0; }
+    <!-- AOS (Animate On Scroll) Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* Custom styles and Tailwind theme extensions */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #89CFF0; /* Light Dusty Rose Background */
+        }
+        .font-script {
+            font-family: 'Parisienne', cursive;
+        }
+        /* Custom Dusty Rose color palette */
+        .bg-rose-50 { background-color: #FEF6F6; }
+        .bg-rose-100 { background-color: #FBE7E7; }
+        .bg-rose-600 { background-color: #D8A0A0; }
+        .bg-rose-800 { background-color: #B07070; }
+        .text-rose-800 { color: #B07070; }
+        .text-rose-900 { color: #8C5050; }
+        .border-rose-600 { border-color: #D8A0A0; }
+        .ring-rose-600 { --tw-ring-color: #D8A0A0; }
 
-        /* Parallax effect container */
-        .parallax-container {
-            perspective: 1px;
-            height: 100vh;
-            overflow-x: hidden;
-            overflow-y: auto;
-        }
-        .parallax-bg {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            z-index: -1;
-            transform: translateZ(-1px) scale(2);
-            background-size: cover;
-            background-position: center;
-        }
-        .section-content {
-            position: relative;
-            z-index: 1;
-        }
-        
-        /* Smooth transition for all elements */
-        * {
-            transition: all 0.3s ease-in-out;
-        }
-    </style>
+        /* Parallax effect container */
+        .parallax-container {
+            perspective: 1px;
+            height: 100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+            transform: translateZ(-1px) scale(2);
+            background-size: cover;
+            background-position: center;
+        }
+        .section-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Smooth transition for all elements */
+        * {
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
 </head>
 <body class="bg-rose-50 text-gray-800">
 
-<!-- Audio Player -->
-    <audio id="backgroundMusic" loop>
-        <!-- It's best to use a direct link to an MP3 file. YouTube links won't work here directly. -->
-        <!-- I've used a placeholder audio. Replace 'placeholder-audio.mp3' with your actual audio file URL. -->
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-
-    <!-- Music Control Button -->
-    <button id="musicControl" class="fixed bottom-5 right-5 z-50 w-12 h-12 rounded-full bg-dark-slate text-white flex items-center justify-center shadow-lg">
-        <i id="musicIcon" class="fas fa-play"></i>
+<!-- Audio Player dan Tombol Kontrol -->
+<!-- Kontainer untuk pemutar audio yang akan diposisikan di pojok kanan bawah -->
+<div class="fixed bottom-5 right-5 z-50">
+    <!-- Tombol Play/Pause -->
+    <button id="musicControl" class="w-12 h-12 rounded-full bg-rose-600 text-white flex items-center justify-center shadow-lg transition-transform duration-300 transform hover:scale-110">
+        <i id="musicIcon" data-lucide="play" class="w-6 h-6"></i>
     </button>
+    <!-- Slider Volume (opsional) -->
+    <div id="volumeControl" class="hidden absolute bottom-14 right-0 p-2 bg-white rounded-xl shadow-lg w-28">
+        <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5" class="w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer">
+    </div>
+</div>
 
-    <!-- Hero Section -->
-    <section id="hero" class="relative h-screen flex flex-col items-center justify-center text-white text-center overflow-hidden">
-        <div class="absolute inset-0 bg-black opacity-40 z-10"></div>
-        <div class="parallax-bg" style="background-image: url('https://lh3.googleusercontent.com/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps');"></div>
-        <div class="relative z-20 p-4" data-aos="fade-up">
-            <p class="text-lg md:text-xl tracking-widest mb-2">THE WEDDING OF</p>
-            <h1 class="font-script text-6xl md:text-8xl mb-4">Rama & Rin</h1>
-            <p class="text-lg md:text-xl font-light">Kami mengundang Anda untuk merayakan hari bahagia kami</p>
-            <div id="countdown" class="flex justify-center space-x-4 md:space-x-8 mt-8 text-lg">
-                <div><span id="days" class="block text-4xl font-bold">00</span><span>Hari</span></div>
-                <div><span id="hours" class="block text-4xl font-bold">00</span><span>Jam</span></div>
-                <div><span id="minutes" class="block text-4xl font-bold">00</span><span>Menit</span></div>
-                <div><span id="seconds" class="block text-4xl font-bold">00</span><span>Detik</span></div>
-            </div>
-        </div>
-        <div class="absolute bottom-10 z-20 animate-bounce">
-            <i data-lucide="chevrons-down" class="w-8 h-8 text-white"></i>
-        </div>
-    </section>
+    <!-- Hero Section -->
+    <section id="hero" class="relative h-screen flex flex-col items-center justify-center text-white text-center overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-40 z-10"></div>
+        <div class="parallax-bg" style="background-image: url('https://lh3.googleusercontent.com/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps');"></div>
+        <div class="relative z-20 p-4" data-aos="fade-up">
+            <p class="text-lg md:text-xl tracking-widest mb-2">THE WEDDING OF</p>
+            <h1 class="font-script text-6xl md:text-8xl mb-4">Rama & Rin</h1>
+            <p class="text-lg md:text-xl font-light">Kami mengundang Anda untuk merayakan hari bahagia kami</p>
+            <div id="countdown" class="flex justify-center space-x-4 md:space-x-8 mt-8 text-lg">
+                <div><span id="days" class="block text-4xl font-bold">00</span><span>Hari</span></div>
+                <div><span id="hours" class="block text-4xl font-bold">00</span><span>Jam</span></div>
+                <div><span id="minutes" class="block text-4xl font-bold">00</span><span>Menit</span></div>
+                <div><span id="seconds" class="block text-4xl font-bold">00</span><span>Detik</span></div>
+            </div>
+        </div>
+        <div class="absolute bottom-10 z-20 animate-bounce">
+            <i data-lucide="chevrons-down" class="w-8 h-8 text-white"></i>
+        </div>
+    </section>
 
-    <!-- Invitation Section -->
-    <section id="invitation" class="py-20 px-6 bg-white">
-        <div class="max-w-4xl mx-auto text-center">
-            <div data-aos="fade-up">
-                <i data-lucide="heart" class="w-16 h-16 text-rose-600 mx-auto mb-6"></i>
-                <h2 class="font-script text-5xl text-rose-800 mb-4">Dengan Rahmat Allah SWT</h2>
-                <p class="text-gray-600 leading-relaxed max-w-2xl mx-auto">
-                    Dengan memohon rahmat dan ridho Tuhan Yang Maha Esa, kami bermaksud menyelenggarakan acara pernikahan putra-putri kami yang Insya Allah akan diselenggarakan pada:
-                </p>
-            </div>
-            <div class="mt-12 grid md:grid-cols-2 gap-12 text-left">
-                <div class="bg-rose-50 p-8 rounded-lg shadow-md" data-aos="fade-right">
-                    <h3 class="font-script text-4xl text-rose-900 mb-4">Muhamad Rama Muhyinur Syarifuddin, S. Pd.</h3>
-                    <p class="text-gray-700">Putra dari Bapak [Nama Ayah Rama] & Ibu [Nama Ibu Rama]</p>
-                </div>
-                <div class="bg-rose-50 p-8 rounded-lg shadow-md" data-aos="fade-left">
-                    <h3 class="font-script text-4xl text-rose-900 mb-4">Miftah Khairani, S. Pd., M. Pd.</h3>
-                    <p class="text-gray-700">Anak pertama dari Bapak Mansur & Ibu Halima, S.IP.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Invitation Section -->
+    <section id="invitation" class="py-20 px-6 bg-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <div data-aos="fade-up">
+                <i data-lucide="heart" class="w-16 h-16 text-rose-600 mx-auto mb-6"></i>
+                <h2 class="font-script text-5xl text-rose-800 mb-4">Dengan Rahmat Allah SWT</h2>
+                <p class="text-gray-600 leading-relaxed max-w-2xl mx-auto">
+                    Dengan memohon rahmat dan ridho Tuhan Yang Maha Esa, kami bermaksud menyelenggarakan acara pernikahan putra-putri kami yang Insya Allah akan diselenggarakan pada:
+                </p>
+            </div>
+            <div class="mt-12 grid md:grid-cols-2 gap-12 text-left">
+                <div class="bg-rose-50 p-8 rounded-lg shadow-md" data-aos="fade-right">
+                    <h3 class="font-script text-4xl text-rose-900 mb-4">Muhamad Rama Muhyinur Syarifuddin, S. Pd.</h3>
+                    <p class="text-gray-700">Putra dari Bapak [Nama Ayah Rama] & Ibu [Nama Ibu Rama]</p>
+                </div>
+                <div class="bg-rose-50 p-8 rounded-lg shadow-md" data-aos="fade-left">
+                    <h3 class="font-script text-4xl text-rose-900 mb-4">Miftah Khairani, S. Pd., M. Pd.</h3>
+                    <p class="text-gray-700">Anak pertama dari Bapak Mansur & Ibu Halima, S.IP.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Event Details Section -->
-    <section id="details" class="py-20 px-6 bg-rose-50">
-        <div class="max-w-5xl mx-auto text-center">
-            <h2 class="font-script text-5xl text-rose-800 mb-12" data-aos="fade-up">Save The Date</h2>
-            <div class="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16">
-                <!-- Akad Nikah -->
-                <div class="w-full md:w-1/2 bg-white p-8 rounded-xl shadow-lg" data-aos="zoom-in">
-                    <i data-lucide="gem" class="w-12 h-12 text-rose-600 mx-auto mb-4"></i>
-                    <h3 class="text-3xl font-semibold text-rose-900 mb-2">Akad Nikah</h3>
-                    <p class="text-lg text-gray-600">Kamis, 04 September 2025</p>
-                    <p class="text-lg text-gray-600">Pukul 10:00 WIB</p>
-                    <p class="mt-4 text-gray-500">
-                        <i data-lucide="map-pin" class="inline-block w-4 h-4 mr-2"></i>
-                        Jl. Poros Wamengkoli, Desa Nepa Mekar, Kecamatan Lakudo, Kabupaten Buton Tengah, Provinsi Sulawesi Tenggara.
-                    </p>
-                </div>
-                <!-- Resepsi -->
-                <div class="w-full md:w-1/2 bg-white p-8 rounded-xl shadow-lg" data-aos="zoom-in" data-aos-delay="200">
-                    <i data-lucide="glass-water" class="w-12 h-12 text-rose-600 mx-auto mb-4"></i>
-                    <h3 class="text-3xl font-semibold text-rose-900 mb-2">Resepsi</h3>
-                    <p class="text-lg text-gray-600">Kamis, 04 September 2025</p>
-                    <p class="text-lg text-gray-600">Pukul 13:00 WIB - Selesai</p>
-                    <p class="mt-4 text-gray-500">
-                        <i data-lucide="map-pin" class="inline-block w-4 h-4 mr-2"></i>
-                        Jl. Poros Wamengkoli, Desa Nepa Mekar, Kecamatan Lakudo, Kabupaten Buton Tengah, Provinsi Sulawesi Tenggara.
-                    </p>
-                </div>
-            </div>
-             <!-- Google Maps -->
-            <div class="mt-16" data-aos="fade-up">
-                <h3 class="text-2xl font-semibold text-rose-900 mb-4">Lokasi Acara</h3>
-                <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-lg border-4 border-white">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126917.40243423736!2d106.53293109726561!3d-6.229728000000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69fbf534511d59%3A0x658994751d42a44d!2sTangerang%2C%20Kota%20Tangerang%2C%20Banten!5e0!3m2!1sid!2sid!4v1724545300249!5m2!1sid!2sid" 
-                        width="100%" 
-                        height="450" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Event Details Section -->
+    <section id="details" class="py-20 px-6 bg-rose-50">
+        <div class="max-w-5xl mx-auto text-center">
+            <h2 class="font-script text-5xl text-rose-800 mb-12" data-aos="fade-up">Save The Date</h2>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16">
+                <!-- Akad Nikah -->
+                <div class="w-full md:w-1/2 bg-white p-8 rounded-xl shadow-lg" data-aos="zoom-in">
+                    <i data-lucide="gem" class="w-12 h-12 text-rose-600 mx-auto mb-4"></i>
+                    <h3 class="text-3xl font-semibold text-rose-900 mb-2">Akad Nikah</h3>
+                    <p class="text-lg text-gray-600">Kamis, 04 September 2025</p>
+                    <p class="text-lg text-gray-600">Pukul 10:00 WIB</p>
+                    <p class="mt-4 text-gray-500">
+                        <i data-lucide="map-pin" class="inline-block w-4 h-4 mr-2"></i>
+                        Jl. Poros Wamengkoli, Desa Nepa Mekar, Kecamatan Lakudo, Kabupaten Buton Tengah, Provinsi Sulawesi Tenggara.
+                    </p>
+                </div>
+                <!-- Resepsi -->
+                <div class="w-full md:w-1/2 bg-white p-8 rounded-xl shadow-lg" data-aos="zoom-in" data-aos-delay="200">
+                    <i data-lucide="glass-water" class="w-12 h-12 text-rose-600 mx-auto mb-4"></i>
+                    <h3 class="text-3xl font-semibold text-rose-900 mb-2">Resepsi</h3>
+                    <p class="text-lg text-gray-600">Kamis, 04 September 2025</p>
+                    <p class="text-lg text-gray-600">Pukul 13:00 WIB - Selesai</p>
+                    <p class="mt-4 text-gray-500">
+                        <i data-lucide="map-pin" class="inline-block w-4 h-4 mr-2"></i>
+                        Jl. Poros Wamengkoli, Desa Nepa Mekar, Kecamatan Lakudo, Kabupaten Buton Tengah, Provinsi Sulawesi Tenggara.
+                    </p>
+                </div>
+            </div>
+             <!-- Google Maps -->
+            <div class="mt-16" data-aos="fade-up">
+                <h3 class="text-2xl font-semibold text-rose-900 mb-4">Lokasi Acara</h3>
+                <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-lg border-4 border-white">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126917.40243423736!2d106.53293109726561!3d-6.229728000000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69fbf534511d59%3A0x658994751d42a44d!2sTangerang%2C%20Kota%20Tangerang%2C%20Banten!5e0!3m2!1sid!2sid!4v1724545300249!5m2!1sid!2sid" 
+                        width="100%" 
+                        height="450" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Story Section -->
-    <section id="story" class="py-20 px-6 bg-white">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="font-script text-5xl text-rose-800 mb-6" data-aos="fade-up">Kisah di Balik Hari Bahagia Kami</h2>
-            <p class="text-gray-600 leading-relaxed" data-aos="fade-up" data-aos-delay="100">
-                We never imagined that a simple connection would bring us this far to the moment where we choose to walk together, forever. Our story began on Facebook back when he was in the middle school, and I was in high school. Even at that young age, he made a quiet but sincere commitment to me. Time passed, and life took us in different directions. On August 24th, 2025, he returned not just with words, but with the courage to fulfill the promise he made years ago. On August 27th, we officially got engagement, surrounded by those we love. And now, we look forward to beginning our new chapter as husband and wife on September 4th, 2025, the day of our akad. This journey filled with time, distance, and unshaken intention has shaped our story. And now, we’re ready to write the rest of it, together.
-            </p>
-        </div>
-    </section>
+    <!-- Story Section -->
+    <section id="story" class="py-20 px-6 bg-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="font-script text-5xl text-rose-800 mb-6" data-aos="fade-up">Kisah di Balik Hari Bahagia Kami</h2>
+            <p class="text-gray-600 leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+                We never imagined that a simple connection would bring us this far to the moment where we choose to walk together, forever. Our story began on Facebook back when he was in the middle school, and I was in high school. Even at that young age, he made a quiet but sincere commitment to me. Time passed, and life took us in different directions. On August 24th, 2025, he returned not just with words, but with the courage to fulfill the promise he made years ago. On August 27th, we officially got engagement, surrounded by those we love. And now, we look forward to beginning our new chapter as husband and wife on September 4th, 2025, the day of our akad. This journey filled with time, distance, and unshaken intention has shaped our story. And now, we’re ready to write the rest of it, together.
+            </p>
+        </div>
+    </section>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="py-20 px-6 bg-rose-50">
-        <div class="max-w-6xl mx-auto text-center">
-            <h2 class="font-script text-5xl text-rose-800 mb-12" data-aos="fade-up">Momen Bahagia</h2>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                <div data-aos="zoom-in-up"><img src="https://lh3.googleusercontent.com/d/1f8UAGNjJAEzNq6Jj6C6MuGz3m6i0oyBS" alt="Gallery Photo 1" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300"></div>
-                <div data-aos="zoom-in-up" data-aos-delay="100"><img src="https://drive.google.com/file/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps/view?usp=drive_link" alt="Gallery Photo 2" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300"></div>
-                <div data-aos="zoom-in-up" data-aos-delay="200"><img src="https://drive.google.com/file/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps/view?usp=drive_link" alt="Gallery Photo 3" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300"></div>
-                <div data-aos="zoom-in-up" data-aos-delay="300"><img src="https://drive.google.com/file/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps/view?usp=drive_link" alt="Gallery Photo 4" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300"></div>
-                <div data-aos="zoom-in-up" data-aos-delay="400"><img src="https://drive.google.com/file/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps/view?usp=drive_link" alt="Gallery Photo 5" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300"></div>
-                <div data-aos="zoom-in-up" data-aos-delay="500"><img src="https://drive.google.com/file/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps/view?usp=drive_link" alt="Gallery Photo 6" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300"></div>
-            </div>
-        </div>
-    </section>
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 px-6 bg-rose-50">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="font-script text-5xl text-rose-800 mb-12" data-aos="fade-up">Momen Bahagia</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div data-aos="zoom-in-up"><img src="https://lh3.googleusercontent.com/d/1f8UAGNjJAEzNq6Jj6C6MuGz3m6i0oyBS" alt="Gallery Photo 1" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300"></div>
+                <div data-aos="zoom-in-up" data-aos-delay="100"><img src="https://drive.google.com/file/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps/view?usp=drive_link" alt="Gallery Photo 2" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300"></div>
+                <div data-aos="zoom-in-up" data-aos-delay="200"><img src="https://drive.google.com/file/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps/view?usp=drive_link" alt="Gallery Photo 3" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300"></div>
+                <div data-aos="zoom-in-up" data-aos-delay="300"><img src="https://drive.google.com/file/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps/view?usp=drive_link" alt="Gallery Photo 4" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300"></div>
+                <div data-aos="zoom-in-up" data-aos-delay="400"><img src="https://drive.google.com/file/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps/view?usp=drive_link" alt="Gallery Photo 5" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300"></div>
+                <div data-aos="zoom-in-up" data-aos-delay="500"><img src="https://drive.google.com/file/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps/view?usp=drive_link" alt="Gallery Photo 6" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300"></div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Wedding Gift Section -->
-    <section id="gift" class="py-20 px-6 bg-white">
-        <div class="max-w-2xl mx-auto text-center">
-            <div data-aos="fade-up">
-                <i data-lucide="gift" class="w-16 h-16 text-rose-600 mx-auto mb-6"></i>
-                <h2 class="font-script text-5xl text-rose-800 mb-4">Wedding Gift</h2>
-                <p class="text-gray-600 leading-relaxed mb-8">
-                    Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Namun jika memberi adalah ungkapan tanda kasih, Anda dapat memberi kado secara cashless.
-                </p>
-                <div class="bg-rose-50 p-6 rounded-lg shadow-inner inline-block">
-                    <p class="text-lg font-semibold text-rose-900">Bank Muamalat</p>
-                    <p id="rekening" class="text-2xl font-bold text-gray-800 my-2">8010117178</p>
-                    <p class="text-md text-gray-700">a/n MIFTAH KHAIRANI</p>
-                </div>
-                <button id="copyButton" class="mt-6 bg-rose-600 text-white px-6 py-3 rounded-lg hover:bg-rose-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-600 flex items-center mx-auto">
-                    <i data-lucide="copy" class="w-4 h-4 mr-2"></i>
-                    Salin No. Rekening
-                </button>
-                <p id="copyMessage" class="text-green-600 mt-2 h-4"></p>
-            </div>
-            <div class="bg-rose-50 p-6 rounded-lg shadow-inner inline-block">
-                    <p class="text-lg font-semibold text-rose-900">BRI</p>
-                    <p id="rekening" class="text-2xl font-bold text-gray-800 my-2">504201016983530</p>
-                    <p class="text-md text-gray-700">a/n MIFTAH KHAIRANI</p>
-                </div>
-                <button id="copyButton" class="mt-6 bg-rose-600 text-white px-6 py-3 rounded-lg hover:bg-rose-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-600 flex items-center mx-auto">
-                    <i data-lucide="copy" class="w-4 h-4 mr-2"></i>
-                    Salin No. Rekening
-                </button>
-                <p id="copyMessage" class="text-green-600 mt-2 h-4"></p>
-            </div>
-        </div>
-    </section>
+    <!-- Wedding Gift Section -->
+    <section id="gift" class="py-20 px-6 bg-white">
+        <div class="max-w-2xl mx-auto text-center">
+            <div data-aos="fade-up">
+                <i data-lucide="gift" class="w-16 h-16 text-rose-600 mx-auto mb-6"></i>
+                <h2 class="font-script text-5xl text-rose-800 mb-4">Wedding Gift</h2>
+                <p class="text-gray-600 leading-relaxed mb-8">
+                    Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Namun jika memberi adalah ungkapan tanda kasih, Anda dapat memberi kado secara cashless.
+                </p>
+                <div class="bg-rose-50 p-6 rounded-lg shadow-inner inline-block">
+                    <p class="text-lg font-semibold text-rose-900">Bank Muamalat</p>
+                    <p id="rekening_muamalat" class="text-2xl font-bold text-gray-800 my-2">8010117178</p>
+                    <p class="text-md text-gray-700">a/n MIFTAH KHAIRANI</p>
+                </div>
+                <button id="copyButtonMuamalat" class="mt-6 bg-rose-600 text-white px-6 py-3 rounded-lg hover:bg-rose-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-600 flex items-center mx-auto">
+                    <i data-lucide="copy" class="w-4 h-4 mr-2"></i>
+                    Salin No. Rekening
+                </button>
+                <p id="copyMessageMuamalat" class="text-green-600 mt-2 h-4"></p>
+            </div>
+            <div class="bg-rose-50 p-6 rounded-lg shadow-inner inline-block mt-4">
+                    <p class="text-lg font-semibold text-rose-900">BRI</p>
+                    <p id="rekening_bri" class="text-2xl font-bold text-gray-800 my-2">504201016983530</p>
+                    <p class="text-md text-gray-700">a/n MIFTAH KHAIRANI</p>
+                </div>
+                <button id="copyButtonBri" class="mt-6 bg-rose-600 text-white px-6 py-3 rounded-lg hover:bg-rose-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-600 flex items-center mx-auto">
+                    <i data-lucide="copy" class="w-4 h-4 mr-2"></i>
+                    Salin No. Rekening
+                </button>
+                <p id="copyMessageBri" class="text-green-600 mt-2 h-4"></p>
+            </div>
+        </div>
+    </section>
 
-    <!-- Guestbook Section -->
-    <section id="guestbook" class="py-20 px-6 bg-rose-50">
-        <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-12" data-aos="fade-up">
-                <h2 class="font-script text-5xl text-rose-800 mb-4">Buku Tamu</h2>
-                <p class="text-gray-600">Berikan ucapan dan doa restu terbaik Anda untuk kedua mempelai</p>
-            </div>
-            <div class="bg-white p-8 rounded-lg shadow-lg" data-aos="fade-up">
-                <form id="guestbookForm">
-                    <div class="mb-4">
-                        <label for="nama" class="block text-gray-700 mb-2">Nama</label>
-                        <input type="text" id="nama" name="nama" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-600" required>
-                    </div>
-                    <div class="mb-4">
-                        <label for="ucapan" class="block text-gray-700 mb-2">Ucapan</label>
-                        <textarea id="ucapan" name="ucapan" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-600" required></textarea>
-                    </div>
-                    <button type="submit" class="w-full bg-rose-600 text-white px-6 py-3 rounded-lg hover:bg-rose-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-600">
-                        Kirim Ucapan
-                    </button>
-                </form>
-            </div>
+    <!-- Guestbook Section -->
+    <section id="guestbook" class="py-20 px-6 bg-rose-50">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="font-script text-5xl text-rose-800 mb-4">Buku Tamu</h2>
+                <p class="text-gray-600">Berikan ucapan dan doa restu terbaik Anda untuk kedua mempelai</p>
+            </div>
+            <div class="bg-white p-8 rounded-lg shadow-lg" data-aos="fade-up">
+                <form id="guestbookForm">
+                    <div class="mb-4">
+                        <label for="nama" class="block text-gray-700 mb-2">Nama</label>
+                        <input type="text" id="nama" name="nama" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-600" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="ucapan" class="block text-gray-700 mb-2">Ucapan</label>
+                        <textarea id="ucapan" name="ucapan" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-600" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-rose-600 text-white px-6 py-3 rounded-lg hover:bg-rose-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-600">
+                        Kirim Ucapan
+                    </button>
+                </form>
+            </div>
 
-            <div id="ucapanList" class="mt-12 space-y-6">
-                <!-- Ucapan akan ditampilkan di sini -->
-            </div>
-        </div>
-    </section>
+            <div id="ucapanList" class="mt-12 space-y-6">
+                <!-- Ucapan akan ditampilkan di sini -->
+            </div>
+        </div>
+    </section>
 
-    <!-- Footer -->
-    <footer class="py-12 bg-rose-800 text-white text-center">
-        <p>Terima kasih atas doa restu Anda</p>
-        <p class="font-script text-4xl my-4">Rama & Rin</p>
-        <p class="text-sm text-rose-100">&copy; 2025. nisaDev.</p>
-    </footer>
+    <!-- Footer -->
+    <footer class="py-12 bg-rose-800 text-white text-center">
+        <p>Terima kasih atas doa restu Anda</p>
+        <p class="font-script text-4xl my-4">Rama & Rin</p>
+        <p class="text-sm text-rose-100">&copy; 2025. nisaDev.</p>
+    </footer>
 
-    <!-- AOS Script -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 1000, // values from 0 to 3000, with step 50ms
-            once: true, // whether animation should happen only once - while scrolling down
-        });
-    </script>
-    
-    <!-- Lucide Icons Script -->
-    <script>
-        lucide.createIcons();
-    </script>
+    <!-- AOS Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000, // values from 0 to 3000, with step 50ms
+            once: true, // whether animation should happen only once - while scrolling down
+        });
+    </script>
+    
+    <!-- Lucide Icons Script -->
+    <script>
+        lucide.createIcons();
+    </script>
 
-    <!-- Custom JavaScript -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Countdown Timer
-            const countdownDate = new Date("2025-08-27T10:00:00").getTime();
+    <!-- Custom JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Bagian AUDIO
+            const musicControl = document.getElementById('musicControl');
+            const musicIcon = document.getElementById('musicIcon');
+            const volumeControl = document.getElementById('volumeControl');
+            const volumeSlider = document.getElementById('volumeSlider');
+            const audioUrl = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
 
-            const countdownFunction = setInterval(function() {
-                const now = new Date().getTime();
-                const distance = countdownDate - now;
+            let audioContext = null;
+            let source = null;
+            let gainNode = null;
+            let isPlaying = false;
+            let audioBuffer = null;
 
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            async function initAudio() {
+                try {
+                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    gainNode = audioContext.createGain();
+                    gainNode.connect(audioContext.destination);
 
-                document.getElementById("days").innerText = days.toString().padStart(2, '0');
-                document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
-                document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
-                document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
-
-                if (distance < 0) {
-                    clearInterval(countdownFunction);
-                    document.getElementById("countdown").innerHTML = "<div class='text-2xl'>The event has started!</div>";
+                    const response = await fetch(audioUrl);
+                    const arrayBuffer = await response.arrayBuffer();
+                    audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+                } catch (error) {
+                    console.error('Gagal memuat atau memproses audio:', error);
                 }
-            }, 1000);
-
-            // Copy to Clipboard
-            const copyButton = document.getElementById('copyButton');
-            const copyMessage = document.getElementById('copyMessage');
-            const rekeningNumber = document.getElementById('rekening').innerText;
-
-            copyButton.addEventListener('click', () => {
-                const tempInput = document.createElement('input');
-                tempInput.value = rekeningNumber;
-                document.body.appendChild(tempInput);
-                tempInput.select();
-                document.execCommand('copy');
-                document.body.removeChild(tempInput);
-
-                copyMessage.innerText = 'Nomor rekening berhasil disalin!';
-                setTimeout(() => {
-                    copyMessage.innerText = '';
-                }, 2000);
-            });
-
-            // Guestbook
-            const guestbookForm = document.getElementById('guestbookForm');
-            const ucapanList = document.getElementById('ucapanList');
-            
-            // Dummy data for initial view
-            const initialWishes = [
-                { name: 'Sahabat Baik', wish: 'Selamat menempuh hidup baru Axel & Lala! Semoga menjadi keluarga yang sakinah, mawaddah, warahmah. Bahagia selalu!' },
-                { name: 'Rekan Kerja', wish: 'Happy wedding! Semoga cinta kalian abadi selamanya. Turut berbahagia.' }
-            ];
-
-            function displayWishes(wishes) {
-                ucapanList.innerHTML = '';
-                wishes.forEach(item => {
-                    const wishElement = document.createElement('div');
-                    wishElement.className = 'bg-white p-6 rounded-lg shadow-md';
-                    wishElement.innerHTML = `
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0">
-                                <span class="inline-flex items-center justify-center h-10 w-10 rounded-full bg-rose-100">
-                                    <span class="font-medium text-rose-800">${item.name.charAt(0)}</span>
-                                </span>
-                            </div>
-                            <div class="ml-4">
-                                <p class="font-semibold text-rose-900">${item.name}</p>
-                                <p class="text-gray-600 mt-1">${item.wish}</p>
-                            </div>
-                        </div>
-                    `;
-                    ucapanList.appendChild(wishElement);
-                });
             }
 
-            // Load wishes from localStorage or use initial data
-            let wishes = JSON.parse(localStorage.getItem('weddingWishes')) || initialWishes;
-            displayWishes(wishes);
+            function startPlayback() {
+                if (!audioBuffer) return;
+                source = audioContext.createBufferSource();
+                source.buffer = audioBuffer;
+                source.connect(gainNode);
+                source.loop = true; // Loop audio
+                source.start(0);
+                isPlaying = true;
+                musicIcon.setAttribute('data-lucide', 'pause');
+                lucide.createIcons(); // Perbarui ikon
+            }
 
-            guestbookForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const name = e.target.nama.value;
-                const wish = e.target.ucapan.value;
+            function stopPlayback() {
+                if (source) {
+                    source.stop();
+                    isPlaying = false;
+                    musicIcon.setAttribute('data-lucide', 'play');
+                    lucide.createIcons();
+                }
+            }
 
-                const newWish = { name, wish };
-                wishes.unshift(newWish); // Add new wish to the beginning
-                
-                // Save to localStorage
-                localStorage.setItem('weddingWishes', JSON.stringify(wishes));
-                
-                displayWishes(wishes);
-                guestbookForm.reset();
+            // Memuat audio saat halaman dimuat
+            initAudio();
+
+            // Toggle play/pause dan volume slider
+            musicControl.addEventListener('click', () => {
+                if (audioContext.state === 'suspended') {
+                    audioContext.resume();
+                }
+
+                if (isPlaying) {
+                    stopPlayback();
+                    volumeControl.classList.add('hidden');
+                } else {
+                    startPlayback();
+                    volumeControl.classList.remove('hidden');
+                }
             });
-        });
-    </script>
+
+            // Mengontrol volume
+            volumeSlider.addEventListener('input', (event) => {
+                if (gainNode) {
+                    gainNode.gain.value = event.target.value;
+                }
+            });
+
+            // Countdown Timer
+            const countdownDate = new Date("2025-08-27T10:00:00").getTime();
+
+            const countdownFunction = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = countdownDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("days").innerText = days.toString().padStart(2, '0');
+                document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+                document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+                document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+
+                if (distance < 0) {
+                    clearInterval(countdownFunction);
+                    document.getElementById("countdown").innerHTML = "<div class='text-2xl'>The event has started!</div>";
+                }
+            }, 1000);
+
+            // Copy to Clipboard Muamalat
+            const copyButtonMuamalat = document.getElementById('copyButtonMuamalat');
+            const copyMessageMuamalat = document.getElementById('copyMessageMuamalat');
+            const rekeningNumberMuamalat = document.getElementById('rekening_muamalat').innerText;
+
+            copyButtonMuamalat.addEventListener('click', () => {
+                const tempInput = document.createElement('input');
+                tempInput.value = rekeningNumberMuamalat;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+
+                copyMessageMuamalat.innerText = 'Nomor rekening berhasil disalin!';
+                setTimeout(() => {
+                    copyMessageMuamalat.innerText = '';
+                }, 2000);
+            });
+
+            // Copy to Clipboard BRI
+            const copyButtonBri = document.getElementById('copyButtonBri');
+            const copyMessageBri = document.getElementById('copyMessageBri');
+            const rekeningNumberBri = document.getElementById('rekening_bri').innerText;
+            
+            copyButtonBri.addEventListener('click', () => {
+                const tempInput = document.createElement('input');
+                tempInput.value = rekeningNumberBri;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+
+                copyMessageBri.innerText = 'Nomor rekening berhasil disalin!';
+                setTimeout(() => {
+                    copyMessageBri.innerText = '';
+                }, 2000);
+            });
+
+
+            // Guestbook
+            const guestbookForm = document.getElementById('guestbookForm');
+            const ucapanList = document.getElementById('ucapanList');
+            
+            // Dummy data for initial view
+            const initialWishes = [
+                { name: 'Sahabat Baik', wish: 'Selamat menempuh hidup baru Rama & Rin! Semoga menjadi keluarga yang sakinah, mawaddah, warahmah. Bahagia selalu!' },
+                { name: 'Rekan Kerja', wish: 'Happy wedding! Semoga cinta kalian abadi selamanya. Turut berbahagia.' }
+            ];
+
+            function displayWishes(wishes) {
+                ucapanList.innerHTML = '';
+                wishes.forEach(item => {
+                    const wishElement = document.createElement('div');
+                    wishElement.className = 'bg-white p-6 rounded-lg shadow-md';
+                    wishElement.innerHTML = `
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <span class="inline-flex items-center justify-center h-10 w-10 rounded-full bg-rose-100">
+                                    <span class="font-medium text-rose-800">${item.name.charAt(0)}</span>
+                                </span>
+                            </div>
+                            <div class="ml-4">
+                                <p class="font-semibold text-rose-900">${item.name}</p>
+                                <p class="text-gray-600 mt-1">${item.wish}</p>
+                            </div>
+                        </div>
+                    `;
+                    ucapanList.appendChild(wishElement);
+                });
+            }
+
+            // Load wishes from localStorage or use initial data
+            let wishes = JSON.parse(localStorage.getItem('weddingWishes')) || initialWishes;
+            displayWishes(wishes);
+
+            guestbookForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = e.target.nama.value;
+                const wish = e.target.ucapan.value;
+
+                const newWish = { name, wish };
+                wishes.unshift(newWish); // Add new wish to the beginning
+                
+                // Save to localStorage
+                localStorage.setItem('weddingWishes', JSON.stringify(wishes));
+                
+                displayWishes(wishes);
+                guestbookForm.reset();
+            });
+        });
+    </script>
 </body>
-
 </html>
-
-
-
