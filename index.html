@@ -105,13 +105,13 @@
 <body class="bg-sky-50 text-gray-800">
 
 <!-- Audio Player and Control Button -->
-     <audio id="backgroundMusic" loop>
+        <audio id="backgroundMusic" loop>
           <source src="https://raw.githubusercontent.com/Haeratunnisa/wedding-site/main/audio/You%20Are%20The%20Reason.mp3" type="audio/mpeg">
           Browser kamu tidak mendukung audio tag.
         </audio>
         
-        <!-- Tombol Buka Undangan di tengah layar -->
-        <div id="playOverlay" style="position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.6); z-index: 9999;">
+        <!-- Tombol Buka Undangan di tengah layar dengan background blur -->
+        <div id="playOverlay" style="position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(8px); background: rgba(0,0,0,0.4); z-index: 9999;">
           <button id="playButton" style="padding: 1rem 2rem; font-size: 1.4rem; border-radius: 10px; background: #3498db; color: white; border: none; cursor: pointer;">
             💌 Buka Undangan 💌
           </button>
@@ -138,8 +138,6 @@
             }
           });
         </script>
-
-
 
 
 <!-- Music Control Button -->
@@ -475,6 +473,7 @@
     </script>
 </body>
 </html>
+
 
 
 
