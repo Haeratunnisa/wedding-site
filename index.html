@@ -105,15 +105,15 @@
 <body class="bg-sky-50 text-gray-800">
 
 <!-- Audio Player and Control Button -->
-        <audio id="backgroundMusic" loop>
+     <audio id="backgroundMusic" loop>
           <source src="https://raw.githubusercontent.com/Haeratunnisa/wedding-site/main/audio/You%20Are%20The%20Reason.mp3" type="audio/mpeg">
           Browser kamu tidak mendukung audio tag.
         </audio>
         
-        <!-- Tombol Play di tengah layar -->
+        <!-- Tombol Buka Undangan di tengah layar -->
         <div id="playOverlay" style="position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.6); z-index: 9999;">
-          <button id="playButton" style="padding: 1rem 2rem; font-size: 1.2rem; border-radius: 8px; background: #3498db; color: white; border: none; cursor: pointer;">
-            🎶 Putar Musik
+          <button id="playButton" style="padding: 1rem 2rem; font-size: 1.4rem; border-radius: 10px; background: #3498db; color: white; border: none; cursor: pointer;">
+            💌 Buka Undangan 💌
           </button>
         </div>
         
@@ -122,13 +122,13 @@
           const playOverlay = document.getElementById('playOverlay');
           const playButton = document.getElementById('playButton');
         
-          // Play saat tombol ditekan
+          // Play musik + hilangkan overlay saat tombol ditekan
           playButton.addEventListener('click', () => {
             audio.play();
             playOverlay.style.display = 'none';
           });
         
-          // Alternatif: jika user scroll duluan, otomatis play
+          // Alternatif: jika user scroll duluan, otomatis play + hilangkan overlay
           let played = false;
           window.addEventListener('scroll', () => {
             if (!played) {
@@ -138,6 +138,7 @@
             }
           });
         </script>
+
 
 
 
@@ -474,6 +475,7 @@
     </script>
 </body>
 </html>
+
 
 
 
