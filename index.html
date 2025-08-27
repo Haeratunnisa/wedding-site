@@ -109,6 +109,24 @@
       <source src="https://raw.githubusercontent.com/Haeratunnisa/wedding-site/main/audio/You%20Are%20The%20Reason.mp3" type="audio/mpeg">
       Browser kamu tidak mendukung audio tag.
     </audio>
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const audio = document.getElementById('backgroundMusic');
+    
+        // Coba auto play
+        const playPromise = audio.play();
+    
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            // Jika autoplay diblokir browser, set agar diputar setelah interaksi pertama user
+            document.addEventListener('click', () => {
+              audio.play();
+            }, { once: true });
+          });
+        }
+      });
+    </script>
 
 <!-- Music Control Button -->
     <button id="musicControl" class="fixed bottom-5 right-5 z-50 w-12 h-12 rounded-full bg-sky-800 text-white flex items-center justify-center shadow-lg">
@@ -443,5 +461,6 @@
     </script>
 </body>
 </html>
+
 
 
