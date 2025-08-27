@@ -110,16 +110,35 @@
           Browser kamu tidak mendukung audio tag.
         </audio>
         
-        <a href="#invitation" id="openInvitation" class="btn-custom px-6 py-3 rounded-full font-medium">Lihat Undangan</a>
+        <!-- Tombol Play di tengah layar -->
+        <div id="playOverlay" style="position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.6); z-index: 9999;">
+          <button id="playButton" style="padding: 1rem 2rem; font-size: 1.2rem; border-radius: 8px; background: #3498db; color: white; border: none; cursor: pointer;">
+            🎶 Putar Musik
+          </button>
+        </div>
         
         <script>
           const audio = document.getElementById('backgroundMusic');
-          const btn = document.getElementById('openInvitation');
+          const playOverlay = document.getElementById('playOverlay');
+          const playButton = document.getElementById('playButton');
         
-          btn.addEventListener('click', () => {
+          // Play saat tombol ditekan
+          playButton.addEventListener('click', () => {
             audio.play();
+            playOverlay.style.display = 'none';
+          });
+        
+          // Alternatif: jika user scroll duluan, otomatis play
+          let played = false;
+          window.addEventListener('scroll', () => {
+            if (!played) {
+              audio.play();
+              playOverlay.style.display = 'none';
+              played = true;
+            }
           });
         </script>
+
 
 
 <!-- Music Control Button -->
@@ -455,6 +474,7 @@
     </script>
 </body>
 </html>
+
 
 
 
