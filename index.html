@@ -22,17 +22,17 @@
     <style>
         /* Custom styles and Tailwind theme extensions */
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #87CEEB; /* Light Dusty Rose Background */
+            font-family: 'Lora', sans-serif;
+            background-color: #F0F8FF; /* Light Dusty Rose Background */
         }
         .font-script {
-            font-family: 'Parisienne', cursive;
+            font-family: 'Playfair Display', serif;
         }
         /* Custom Dusty Rose color palette */
         .bg-rose-50 { background-color: #87CEEB; }
         .bg-rose-100 { background-color: #87CEEB; }
-        .bg-rose-600 { background-color: #D8A0A0; }
-        .bg-rose-800 { background-color: #B07070; }
+        .bg-rose-600 { background-color: #2F4F4F; }
+        .bg-rose-800 { background-color: #2F4F4F; }
         .text-rose-800 { color: #B07070; }
         .text-rose-900 { color: #8C5050; }
         .border-rose-600 { border-color: #D8A0A0; }
@@ -60,6 +60,30 @@
             position: relative;
             z-index: 1;
         }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .btn-custom {
+            background-color: #2F4F4F;
+            color: #F0F8FF;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .btn-custom:hover {
+            background-color: #87CEEB;
+            color: #2F4F4F;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+        }
         
         /* Smooth transition for all elements */
         * {
@@ -70,24 +94,32 @@
 <body class="bg-rose-50 text-gray-800">
 
 <!-- Audio Player dan Tombol Kontrol -->
-<!-- Kontainer untuk pemutar audio yang akan diposisikan di pojok kanan bawah -->
-<div class="fixed bottom-5 right-5 z-50">
-    <!-- Tombol Play/Pause -->
-    <button id="musicControl" class="w-12 h-12 rounded-full bg-rose-600 text-white flex items-center justify-center shadow-lg transition-transform duration-300 transform hover:scale-110">
-        <i id="musicIcon" data-lucide="play" class="w-6 h-6"></i>
+	<audio id="backgroundMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+<!-- Music Control Button -->
+    <button id="musicControl" class="fixed bottom-5 right-5 z-50 w-12 h-12 rounded-full bg-dark-slate text-white flex items-center justify-center shadow-lg">
+        <i id="musicIcon" class="fas fa-play"></i>
     </button>
-    <!-- Slider Volume (opsional) -->
-    <div id="volumeControl" class="hidden absolute bottom-14 right-0 p-2 bg-white rounded-xl shadow-lg w-28">
-        <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5" class="w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer">
-    </div>
-</div>
 
-<!-- Hero Section -->
-    <section id="hero" class="h-screen min-h-[600px] w-full flex flex-col justify-center items-center text-center text-white p-4 parallax" style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://lh3.googleusercontent.com/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps');">
-        <div class="reveal visible">
-            <h3 class="text-lg tracking-widest">THE WEDDING OF</h3>
-            <h1 class="text-6xl md:text-8xl my-4 font-display">Rama & Rani</h1>
-            <p class="text-lg">Kamis, 4 September 2025</p>
+    <!-- Hero Section -->
+    <section id="hero" class="relative h-screen flex flex-col items-center justify-center text-white text-center overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-40 z-10"></div>
+        <div class="parallax-bg" style="background-image: url('https://lh3.googleusercontent.com/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps');"></div>
+        <div class="relative z-20 p-4" data-aos="fade-up">
+            <p class="text-lg md:text-xl tracking-widest mb-2">THE WEDDING OF</p>
+            <h1 class="font-script text-6xl md:text-8xl mb-4">Rama & Rin</h1>
+            <p class="text-lg md:text-xl font-light">Kami mengundang Anda untuk merayakan hari bahagia kami</p>
+            <div id="countdown" class="flex justify-center space-x-4 md:space-x-8 mt-8 text-lg">
+                <div><span id="days" class="block text-4xl font-bold">00</span><span>Hari</span></div>
+                <div><span id="hours" class="block text-4xl font-bold">00</span><span>Jam</span></div>
+                <div><span id="minutes" class="block text-4xl font-bold">00</span><span>Menit</span></div>
+                <div><span id="seconds" class="block text-4xl font-bold">00</span><span>Detik</span></div>
+            </div>
+        </div>
+        <div class="absolute bottom-10 z-20 animate-bounce">
+            <i data-lucide="chevrons-down" class="w-8 h-8 text-white"></i>
         </div>
     </section>
 
@@ -369,6 +401,3 @@
 </body>
 
 </html>
-
-
-
