@@ -8,10 +8,10 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts: Inter and a script font like Great Vibes or Parisienne -->
+    <!-- Google Fonts: Inter and a script font like Playfair Display -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
@@ -25,105 +25,120 @@
     <style>
         /* Custom styles and Tailwind theme extensions */
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #F0F8FF; /* Light Dusty Rose Background */
+            font-family: 'Lora', serif;
+            background-color: #F0F8FF;
+            /* Mencegah scroll saat overlay aktif */
+            overflow: hidden;
         }
         .font-script {
             font-family: 'Playfair Display', serif;
         }
-        /* Custom Dusty Rose color palette */
-        .bg-rose-50 { background-color: #F0F8FF; } /* Swapped with #87CEEB for consistency */
-        .bg-rose-100 { background-color: #87CEEB; }
-        .bg-rose-600 { background-color: #2F4F4F; }
-        .bg-rose-800 { background-color: #2F4F4F; }
-        .text-rose-800 { color: #B07070; }
-        .text-rose-900 { color: #8C5050; }
-        .border-rose-600 { border-color: #D8A0A0; }
-        .ring-rose-600 { --tw-ring-color: #D8A0A0; }
-        .text-dark-slate { color: #2F4F4F; }
-        .border-sky-blue { border-color: #87CEEB; }
-        .bg-dark-slate { background-color: #2F4F4F; }
-        .text-white { color: white; }
+        
+        /* === STYLE BARU UNTUK TRANSIFSI AESTHETIC === */
+        #playOverlay {
+            /* Transisi untuk opacity dan backdrop-filter */
+            transition: opacity 1.5s ease-in-out, backdrop-filter 1.5s ease-in-out;
+        }
 
-        /* Parallax effect container */
-        .parallax-container {
-            perspective: 1px;
-            height: 100vh;
-            overflow-x: hidden;
-            overflow-y: auto;
-        }
-        .parallax-bg {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            z-index: -1;
-            transform: translateZ(-1px) scale(2);
-            background-size: cover;
-            background-position: center;
-        }
-        .section-content {
-            position: relative;
-            z-index: 1;
-        }
-        .reveal {
+        #playOverlay.hidden {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
-        }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
+            pointer-events: none; /* Membuat overlay tidak bisa diklik setelah transisi */
+            backdrop-filter: blur(0px);
         }
 
-        .parallax {
-            background-attachment: fixed;
-            background-position: center;
+        /* Animasi fade-in-up untuk elemen di dalam overlay */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+        
+        .overlay-text {
+            opacity: 0; /* Mulai dengan transparan */
+            animation-delay: 0.5s; /* Muncul setelah 0.5 detik */
+        }
+        
+        .overlay-button {
+            opacity: 0; /* Mulai dengan transparan */
+            animation-delay: 0.8s; /* Muncul setelah teks */
+        }
+
+        #sakura-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 999;
+        }
+
+        .sakura-petal {
+            position: absolute;
+            top: -50px;
+            background-image: url('https://png.pngtree.com/png-clipart/20230401/original/pngtree-cherry-blossom-sakura-petals-falling-png-image_9011952.png');
+            background-size: contain;
             background-repeat: no-repeat;
-            background-size: cover;
+            animation-name: fall;
+            animation-timing-function: linear;
         }
         
-        .btn-custom {
-            background-color: #2F4F4F;
-            color: #F0F8FF;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .btn-custom:hover {
-            background-color: #87CEEB;
-            color: #2F4F4F;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
-        }
-        
-        /* Smooth transition for all elements */
-        * {
-            transition: all 0.3s ease-in-out;
+        @keyframes fall {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(105vh) translateX(var(--wind-effect)) rotate(720deg);
+                opacity: 0;
+            }
         }
     </style>
 </head>
-<body class="bg-rose-50 text-gray-800">
+<body class="bg-sky-50 text-gray-800">
 
-<!-- Audio Player dan Tombol Kontrol -->
-    <audio id="backgroundMusic" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-<!-- Music Control Button -->
-    <button id="musicControl" class="fixed bottom-5 right-5 z-50 w-12 h-12 rounded-full bg-dark-slate text-white flex items-center justify-center shadow-lg">
-        <i id="musicIcon" class="fas fa-play"></i>
+<!-- KONTENER UNTUK ANIMASI SAKURA -->
+<div id="sakura-container"></div>
+
+<!-- Audio Player -->
+<audio id="backgroundMusic" loop>
+    <source src="https://raw.githubusercontent.com/Haeratunnisa/wedding-site/main/audio/You%20Are%20The%20Reason.mp3" type="audio/mpeg">
+    Browser Anda tidak mendukung tag audio.
+</audio>
+      
+<!-- Overlay Pembuka Undangan -->
+<div id="playOverlay" class="fixed inset-0 flex flex-col items-center justify-center backdrop-blur-md bg-gray-900/50 z-[9999] text-center text-white p-4">
+    <p class="text-xl md:text-2xl mb-6 font-script fade-in-up overlay-text">Kami mengundang Anda untuk merayakan hari bahagia kami</p>
+    <button id="playButton" class="py-3 px-6 text-lg rounded-full bg-white/20 text-white border border-white hover:bg-white/40 transition-all duration-300 shadow-lg fade-in-up overlay-button">
+        💌 Buka Undangan 💌
     </button>
+</div>
 
+<!-- Main Content (Seluruh halaman utama) -->
+<main id="main-content">
+
+    <!-- Music Control Button -->
+    <button id="musicControl" class="fixed bottom-5 right-5 z-50 w-12 h-12 rounded-full bg-gray-800/50 backdrop-blur-sm text-white flex items-center justify-center shadow-lg">
+        <i id="musicIcon" class="fas fa-pause"></i>
+    </button>
+    
     <!-- Hero Section -->
     <section id="hero" class="relative h-screen flex flex-col items-center justify-center text-white text-center overflow-hidden">
-        <div class="absolute inset-0 bg-black opacity-40 z-10"></div>
-        <div class="parallax-bg" style="background-image: url('https://lh3.googleusercontent.com/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps');"></div>
-        <div class="relative z-20 p-4" data-aos="fade-up">
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps'); filter: brightness(0.6);"></div>
+        <div class="relative z-10 p-4" data-aos="fade-up">
             <p class="text-lg md:text-xl tracking-widest mb-2">THE WEDDING OF</p>
             <h1 class="font-script text-6xl md:text-8xl mb-4">Rama & Rin</h1>
-            <p class="text-lg md:text-xl font-light">Kami mengundang Anda untuk merayakan hari bahagia kami</p>
-            
+            <p class="text-lg">Kamis, 4 September 2025</p>            
             <!-- Countdown Timer di Hero Section -->
             <div id="countdown" class="flex justify-center space-x-4 md:space-x-8 mt-8 text-lg">
                 <div><span id="hero-days" class="block text-4xl font-bold">00</span><span>Hari</span></div>
@@ -450,3 +465,4 @@
     </script>
 </body>
 </html>
+
