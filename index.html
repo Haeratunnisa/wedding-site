@@ -28,7 +28,6 @@
         body {
             font-family: 'Lora', serif;
             background-color: #F0F8FF; /* Warna dasar Biru Langit */
-            overflow-y: scroll; /* Mengizinkan scroll vertikal */
         }
         .font-script {
             font-family: 'Playfair Display', serif;
@@ -293,26 +292,22 @@
     // Firebase SDKs
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
     import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-    import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+    import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-    // Initialize AOS and Lucide icons
+    // Inisialisasi AOS dan Lucide icons
     AOS.init({ duration: 1000, once: true });
     lucide.createIcons();
 
     // Fungsi Salin Rekening ke Clipboard
     function copyToClipboard(elementId, buttonElement) {
         const textToCopy = document.getElementById(elementId).innerText;
-        navigator.clipboard.writeText(textToCopy).then(() => {
-            const btnText = buttonElement.querySelector('.btn-text');
-            const originalText = btnText.innerText;
-            btnText.innerText = 'Berhasil disalin!';
-            setTimeout(() => {
-                btnText.innerText = originalText;
-            }, 2000);
-        }).catch(err => {
-            console.error('Gagal menyalin: ', err);
-            // Tambahkan pesan error untuk pengguna jika gagal
-        });
+        document.execCommand('copy');
+        const btnText = buttonElement.querySelector('.btn-text');
+        const originalText = btnText.innerText;
+        btnText.innerText = 'Berhasil disalin!';
+        setTimeout(() => {
+            btnText.innerText = originalText;
+        }, 2000);
     }
     window.copyToClipboard = copyToClipboard;
 
@@ -357,13 +352,14 @@
             document.documentElement.style.overflow = 'auto'; // Mengaktifkan scroll
             
             // Hapus overlay setelah transisi selesai
-            playOverlay.addEventListener('transitionend', () => playOverlay.remove(), { once: true });
-
-            // Mulai animasi sakura setelah overlay hilang
-            if (!isSakuraStarted) {
-                startSakuraAnimation();
-                isSakuraStarted = true;
-            }
+            playOverlay.addEventListener('transitionend', () => {
+                playOverlay.remove();
+                // Langsung mulai animasi sakura setelah overlay benar-benar hilang
+                if (!isSakuraStarted) {
+                    startSakuraAnimation();
+                    isSakuraStarted = true;
+                }
+            }, { once: true });
         });
 
         // Music Control
@@ -424,31 +420,43 @@
         }, 1000);
 
         // === GUESTBOOK DENGAN FIRESTORE ===
-        if (db) {
+        // Pastikan Firebase berhasil diinisialisasi
+        if (db && auth) {
             const guestbookCollection = collection(db, `artifacts/${appId}/public/data/wedding_wishes`);
             
             // Listen to real-time updates from Firestore
+            // Menggunakan onSnapshot untuk menampilkan data langsung
             onSnapshot(query(guestbookCollection, orderBy("timestamp", "desc")), (snapshot) => {
-                ucapanList.innerHTML = '';
-                snapshot.docs.forEach(doc => {
-                    const item = doc.data();
-                    const wishElement = document.createElement('div');
-                    wishElement.className = 'bg-white p-6 rounded-lg shadow-md';
-                    wishElement.innerHTML = `
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0">
-                                <span class="inline-flex items-center justify-center h-10 w-10 rounded-full bg-sky-100">
-                                    <span class="font-medium text-sky-800">${item.name.charAt(0).toUpperCase()}</span>
-                                </span>
-                            </div>
-                            <div class="ml-4">
-                                <p class="font-semibold text-sky-800">${item.name}</p>
-                                <p class="text-gray-600 mt-1">${item.wish}</p>
-                                <p class="text-xs text-gray-400 mt-1">${new Date(item.timestamp.toDate()).toLocaleString()}</p>
-                            </div>
-                        </div>`;
-                    ucapanList.appendChild(wishElement);
-                });
+                ucapanList.innerHTML = ''; // Kosongkan daftar sebelum mengisi ulang
+                if (snapshot.empty) {
+                     ucapanList.innerHTML = `<p class="text-center text-gray-500">Belum ada ucapan. Jadilah yang pertama!</p>`;
+                } else {
+                    snapshot.docs.forEach(doc => {
+                        const item = doc.data();
+                        const wishElement = document.createElement('div');
+                        wishElement.className = 'bg-white p-6 rounded-lg shadow-md';
+                        
+                        // Menambahkan format tanggal yang lebih baik
+                        const date = item.timestamp ? new Date(item.timestamp.seconds * 1000).toLocaleString('id-ID') : 'Tanggal tidak tersedia';
+
+                        wishElement.innerHTML = `
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <span class="inline-flex items-center justify-center h-10 w-10 rounded-full bg-sky-100">
+                                        <span class="font-medium text-sky-800">${item.name.charAt(0).toUpperCase()}</span>
+                                    </span>
+                                </div>
+                                <div class="ml-4 flex-1">
+                                    <p class="font-semibold text-sky-800">${item.name}</p>
+                                    <p class="text-gray-600 mt-1">${item.wish}</p>
+                                    <p class="text-xs text-gray-400 mt-1">${date}</p>
+                                </div>
+                            </div>`;
+                        ucapanList.appendChild(wishElement);
+                    });
+                }
+            }, (error) => {
+                console.error("Error fetching documents: ", error);
             });
 
             // Form submission handler to add new wishes to Firestore
@@ -457,7 +465,7 @@
                 const newWish = { 
                     name: e.target.nama.value, 
                     wish: e.target.ucapan.value,
-                    timestamp: new Date()
+                    timestamp: serverTimestamp() // Menggunakan serverTimestamp untuk waktu yang akurat
                 };
                 try {
                     await addDoc(guestbookCollection, newWish);
@@ -466,9 +474,11 @@
                     console.error("Error adding document: ", e);
                 }
             });
+        } else {
+            // Tampilkan pesan error jika Firebase gagal diinisialisasi
+            ucapanList.innerHTML = `<p class="text-center text-red-500">Gagal memuat buku tamu. Pastikan koneksi internet Anda stabil.</p>`;
         }
     });
 </script>
 </body>
 </html>
-
