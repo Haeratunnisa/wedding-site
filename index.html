@@ -277,6 +277,96 @@
         </div>
     </section>
 
+    import React, { useState } from 'react'
+
+export default function WeddingLanding() {
+  const [rsvpList, setRsvpList] = useState([])
+  const [formData, setFormData] = useState({ name: '', message: '' })
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setFormData({ ...formData, [name]: value })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (formData.name.trim() && formData.message.trim()) {
+      setRsvpList([...rsvpList, formData])
+      setFormData({ name: '', message: '' })
+    }
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-sky-100 to-sky-300 text-gray-800 font-sans relative overflow-hidden">
+      {/* Ornamen Motif Cina & Jepang */}
+      <div className="absolute top-0 left-0 w-40 h-40 bg-[url('https://png.pngtree.com/png-vector/20230225/ourmid/pngtree-red-chinese-lantern-png-image_6620215.png')] bg-contain bg-no-repeat opacity-70"></div>
+      <div className="absolute bottom-0 right-0 w-48 h-48 bg-[url('https://png.pngtree.com/png-vector/20230412/ourmid/pngtree-japanese-sakura-branch-with-pink-flowers-png-image_6698947.png')] bg-contain bg-no-repeat opacity-80"></div>
+
+      {/* Hero Section */}
+      <div className="flex flex-col items-center justify-center text-center py-20 px-4 bg-[url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0')] bg-cover bg-center bg-no-repeat relative">
+        <div className="absolute inset-0 bg-sky-900/50"></div>
+        <h1 className="relative text-5xl md:text-6xl font-serif text-white drop-shadow-lg">
+          Alya & Budi
+        </h1>
+        <p className="relative mt-4 text-xl md:text-2xl text-sky-100">
+          28 September 2025
+        </p>
+        <p className="relative mt-2 text-lg italic text-sky-200">
+          Cinta dalam harmoni Jepang & Cina
+        </p>
+      </div>
+
+      {/* RSVP Section */}
+      <div className="max-w-2xl mx-auto my-12 p-6 bg-white rounded-2xl shadow-xl border border-sky-200 relative z-10">
+        <h2 className="text-2xl font-bold mb-4 text-sky-800">RSVP & Ucapan</h2>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <input
+            type="text"
+            name="name"
+            placeholder="Nama Anda"
+            value={formData.name}
+            onChange={handleChange}
+            className="p-3 border rounded-lg focus:ring-2 focus:ring-sky-400 outline-none"
+          />
+          <textarea
+            name="message"
+            placeholder="Ucapan untuk pasangan"
+            value={formData.message}
+            onChange={handleChange}
+            className="p-3 border rounded-lg focus:ring-2 focus:ring-sky-400 outline-none"
+          ></textarea>
+          <button
+            type="submit"
+            className="bg-sky-500 hover:bg-sky-600 text-white py-2 px-4 rounded-xl shadow-md transition"
+          >
+            Kirim
+          </button>
+        </form>
+      </div>
+
+      {/* List Ucapan */}
+      <div className="max-w-3xl mx-auto mb-16 p-6 bg-sky-50 rounded-2xl shadow-sm relative z-10">
+        <h3 className="text-xl font-semibold text-sky-700 mb-4">Ucapan Tamu</h3>
+        {rsvpList.length === 0 ? (
+          <p className="text-gray-500">Belum ada ucapan.</p>
+        ) : (
+          <ul className="space-y-4">
+            {rsvpList.map((rsvp, index) => (
+              <li
+                key={index}
+                className="p-4 bg-white rounded-xl shadow border border-sky-100"
+              >
+                <p className="font-semibold text-sky-800">{rsvp.name}</p>
+                <p className="text-gray-700">{rsvp.message}</p>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
+  )
+}
+
     <!-- Footer -->
     <footer class="py-12 bg-sky-800 text-white text-center">
         <p>Terima kasih atas doa restu Anda</p>
@@ -482,3 +572,4 @@
 </script>
 </body>
 </html>
+
