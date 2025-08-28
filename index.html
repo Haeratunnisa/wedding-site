@@ -41,10 +41,15 @@
         .btn-custom {
             background-color: #075985;
             color: #FFFFFF;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
         .btn-custom:hover {
             background-color: #0369A1;
+            transform: translateY(-2px);
+        }
+        .btn-custom:disabled {
+            background-color: #0c4a6e;
+            cursor: not-allowed;
         }
 
         /* === Styles for Transitions & Animations === */
@@ -64,7 +69,7 @@
         .overlay-text { opacity: 0; animation-delay: 0.5s; }
         .overlay-button { opacity: 0; animation-delay: 0.8s; }
 
-        /* Sakura Animation Container */
+        /* === Sakura Animation Container === */
         #sakura-container {
             position: fixed;
             top: 0; left: 0;
@@ -72,12 +77,18 @@
             pointer-events: none;
             overflow: hidden;
             z-index: 999;
+            opacity: 0; /* Mulai dengan transparan */
+            transition: opacity 1s ease-in-out; /* Transisi saat muncul */
+        }
+        #sakura-container.active {
+            opacity: 1; /* Aktifkan saat di-scroll */
         }
         /* Sakura Petal Animation */
         .sakura-petal {
             position: absolute;
             top: -50px;
-            background-image: url('https://png.pngtree.com/png-clipart/20230401/original/pngtree-cherry-blossom-sakura-petals-falling-png-image_9011952.png');
+            /* Menggunakan gambar yang lebih andal */
+            background-image: url('https://i.ibb.co/yWTTyM9/sakura-petal.png');
             background-size: contain;
             background-repeat: no-repeat;
             animation: fall linear;
@@ -100,7 +111,7 @@
     <source src="https://raw.githubusercontent.com/Haeratunnisa/wedding-site/main/audio/You%20Are%20The%20Reason.mp3" type="audio/mpeg">
     Browser Anda tidak mendukung tag audio.
 </audio>
-      
+    
 <!-- Overlay Pembuka Undangan -->
 <div id="playOverlay" class="fixed inset-0 flex flex-col items-center justify-center backdrop-blur-md bg-gray-900/50 z-[9999] text-center text-white p-4">
     <p class="text-xl md:text-2xl mb-6 font-script fade-in-up overlay-text">Kami mengundang Anda untuk merayakan hari bahagia kami</p>
@@ -185,7 +196,7 @@
         <div class="container mx-auto max-w-4xl text-center" data-aos="fade-up">
             <h2 class="text-4xl md:text-5xl font-script text-sky-800 mb-8">📍 Lokasi Acara</h2>
             <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-lg mt-8">
-                <iframe src="https://www.google.com/maps/embed?pb=...PASTE_YOUR_MAP_EMBED_CODE_HERE...d" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.179340914902!2d122.7169443147719!3d-4.91899999658509!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2da11689104f936b%3A0x8633c7717469733c!2sNepa%20Mekar%2C%20Lakudo%2C%20Kabupaten%20Buton%20Tengah%2C%20Sulawesi%20Tenggara!5e0!3m2!1sid!2sid!4v1678886055582!5m2!1sid!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <a href="https://maps.app.goo.gl/wS78pG17T5fJkE5w8" target="_blank" class="inline-block mt-8 btn-custom py-3 px-6 rounded-lg font-semibold"><i class="fas fa-map-marker-alt mr-2"></i>Buka di Google Maps</a>
         </div>
@@ -251,7 +262,7 @@
         </div>
     </section>
 
-<!-- Guestbook Section (Firestone Integrated) -->
+    <!-- Guestbook Section (Firestone Integrated) -->
     <section id="guestbook" class="py-20 px-6 bg-sky-50">
         <div class="max-w-4xl mx-auto">
             <div class="text-center mb-12" data-aos="fade-up">
