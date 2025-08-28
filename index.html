@@ -5,21 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Wedding of Rama & Rin</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts: Inter and a script font like Playfair Display -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- AOS (Animate On Scroll) Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
@@ -100,73 +95,75 @@
         * {
             transition: all 0.3s ease-in-out;
         }
+        
+        /* === STYLE BARU UNTUK OVERLAY & SAKURA === */
+        #playOverlay {
+            transition: opacity 1s ease-out, visibility 1s ease-out;
+        }
+
+        #sakura-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 999;
+        }
+
+        .sakura-petal {
+            position: absolute;
+            top: -50px; /* Mulai dari atas layar */
+            background-image: url('https://png.pngtree.com/png-clipart/20230401/original/pngtree-cherry-blossom-sakura-petals-falling-png-image_9011952.png'); /* Ganti dengan URL gambar sakura PNG Anda */
+            background-size: contain;
+            background-repeat: no-repeat;
+            animation-name: fall;
+            animation-timing-function: linear;
+        }
+        
+        /* Animasi jatuh dan bergoyang */
+        @keyframes fall {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(105vh) translateX(var(--wind-effect)) rotate(720deg); /* Jatuh ke bawah layar + efek angin */
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body class="bg-sky-50 text-gray-800">
 
-<!-- Audio Player and Control Button -->
-        <audio id="backgroundMusic" loop>
-          <source src="https://raw.githubusercontent.com/Haeratunnisa/wedding-site/main/audio/You%20Are%20The%20Reason.mp3" type="audio/mpeg">
-          Browser kamu tidak mendukung audio tag.
-        </audio>
-        
-        <!-- Tombol Buka Undangan di tengah layar dengan background blur -->
-        <div id="playOverlay" style="position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; backdrop-filter: blur(8px); background: rgba(0,0,0,0.4); z-index: 9999; text-align: center; color: white;">
-        <p style="font-size: 1.2rem; margin-bottom: 20px;">Kami mengundang Anda untuk merayakan hari bahagia kami</p>
-            <button id="playButton" style="padding: 1rem 2rem; font-size: 1.4rem; border-radius: 10px; background: #3498db; color: white; border: none; cursor: pointer;">
-                💌 Buka Undangan 💌
-            </button>
-        </div>
-        
-        <script>
-          const audio = document.getElementById('backgroundMusic');
-          const playOverlay = document.getElementById('playOverlay');
-          const playButton = document.getElementById('playButton');
-        
-          // Play musik + hilangkan overlay saat tombol ditekan
-          playButton.addEventListener('click', () => {
-            audio.play();
-            playOverlay.style.display = 'none';
-          });
-        
-          // Alternatif: jika user scroll duluan, otomatis play + hilangkan overlay
-          let played = false;
-          window.addEventListener('scroll', () => {
-            if (!played) {
-              audio.play();
-              playOverlay.style.display = 'none';
-              played = true;
-            }
-          });
-        </script>
+<div id="sakura-container"></div>
 
+<audio id="backgroundMusic" loop>
+    <source src="https://raw.githubusercontent.com/Haeratunnisa/wedding-site/main/audio/You%20Are%20The%20Reason.mp3" type="audio/mpeg">
+    Browser kamu tidak mendukung audio tag.
+</audio>
+      
+<div id="playOverlay" class="fixed inset-0 flex flex-col items-center justify-center backdrop-blur-md bg-black/40 z-[9999] text-center text-white p-4">
+    <p class="text-xl md:text-2xl mb-6 font-script">Kami mengundang Anda untuk merayakan hari bahagia kami</p>
+    <button id="playButton" class="py-3 px-6 text-lg rounded-full bg-white/20 text-white border border-white hover:bg-white/40 transition-all duration-300 shadow-lg">
+        💌 Buka Undangan 💌
+    </button>
+</div>
 
-<!-- Music Control Button -->
+<main id="main-content" class="opacity-0 transition-opacity duration-1000">
+
     <button id="musicControl" class="fixed bottom-5 right-5 z-50 w-12 h-12 rounded-full bg-sky-800 text-white flex items-center justify-center shadow-lg">
         <i id="musicIcon" class="fas fa-play"></i>
     </button>
-
-    <!-- Hero Section -->
-   <section id="hero" class="relative h-screen flex flex-col items-center justify-center text-white text-center overflow-hidden">
-        <div class="reveal visible"></div>
-        <div class="parallax-bg" style="background-image: url('https://lh3.googleusercontent.com/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps'); background-size: cover; background-position: center; width: 100%; height: 100%; position: absolute; top: 0; left: 0;"></div>
+    
+    <section id="hero" class="relative h-screen flex flex-col items-center justify-center text-white text-center overflow-hidden">
+        <div class="parallax-bg" style="background-image: url('https://lh3.googleusercontent.com/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps'); background-size: cover; background-position: center; filter: brightness(0.6);"></div>
         <div class="relative z-20 p-4" data-aos="fade-up">
             <p class="text-lg md:text-xl tracking-widest mb-2">THE WEDDING OF</p>
             <h1 class="font-script text-6xl md:text-8xl mb-4">Rama & Rin</h1>
-           <!-- <p class="text-lg md:text-xl font-light">Kami mengundang Anda untuk merayakan hari bahagia kami</p> -->
-           <!-- <p class="text-lg md:text-xl font-light">Kamis, 04 September 2025</p> -->
             <p class="text-lg">Kamis, 4 September 2025</p>
-<!--    <section id="hero" class="h-screen min-h-[600px] w-full flex flex-col justify-center items-center text-center text-white p-4 parallax" style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://lh3.googleusercontent.com/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps');">
-        <div class="reveal visible">
-            <h3 class="text-lg tracking-widest">THE WEDDING OF</h3>
-            <h1 class="text-6xl md:text-8xl my-4 font-display">Rama & Rani</h1>
-            <p class="text-lg">Kamis, 4 September 2025</p>
-        </div>
-    </section> -->
-
-    </section>
-            
-            <!-- Countdown Timer in Hero Section -->
+                  
             <div id="countdown" class="flex justify-center space-x-4 md:space-x-8 mt-8 text-lg">
                 <div><span id="hero-days" class="block text-4xl font-bold">00</span><span>Hari</span></div>
                 <div><span id="hero-hours" class="block text-4xl font-bold">00</span><span>Jam</span></div>
@@ -179,7 +176,6 @@
         </div>
     </section>
 
-    <!-- Invitation Section -->
     <section id="invitation" class="py-20 px-6 bg-white">
         <div class="max-w-4xl mx-auto text-center">
             <div data-aos="fade-up">
@@ -201,13 +197,11 @@
             </div>
         </div>
     </section>
-
-    <!-- Event Details Section -->
+    
     <section id="details" class="py-20 px-6 bg-sky-50">
         <div class="max-w-5xl mx-auto text-center">
             <h2 class="font-script text-5xl text-sky-800 mb-12" data-aos="fade-up">🗓️ Save The Date</h2>
             <div class="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16">
-                <!-- Akad Nikah -->
                 <div class="w-full md:w-1/2 bg-white p-8 rounded-xl shadow-lg" data-aos="zoom-in">
                     <i data-lucide="gem" class="w-12 h-12 text-sky-600 mx-auto mb-4"></i>
                     <h3 class="text-3xl font-semibold text-sky-900 mb-2">💍 Akad Nikah</h3>
@@ -218,7 +212,6 @@
                         Jl. Poros Wamengkoli, Desa Nepa Mekar, Kecamatan Lakudo, Kabupaten Buton Tengah, Provinsi Sulawesi Tenggara.
                     </p>
                 </div>
-                <!-- Resepsi -->
                 <div class="w-full md:w-1/2 bg-white p-8 rounded-xl shadow-lg" data-aos="zoom-in" data-aos-delay="200">
                     <i data-lucide="glass-water" class="w-12 h-12 text-sky-600 mx-auto mb-4"></i>
                     <h3 class="text-3xl font-semibold text-sky-900 mb-2">Resepsi</h3>
@@ -232,8 +225,7 @@
             </div>
         </div>
     </section>
-    
-    <!-- Location Section -->
+      
     <section id="location" class="py-20 px-4">
         <div class="container mx-auto max-w-4xl text-center">
             <div class="reveal" data-aos="fade-up">
@@ -243,8 +235,7 @@
             </div>
         </div>
     </section>
-    
-    <!-- Story Section -->
+      
     <section id="story" class="py-20 px-6 bg-white">
         <div class="max-w-4xl mx-auto text-center">
             <h2 class="font-script text-5xl text-sky-800 mb-6" data-aos="fade-up">Kisah di Balik Hari Bahagia Kami</h2>
@@ -254,7 +245,6 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
     <section id="gallery" class="py-20 px-6 bg-sky-50">
         <div class="max-w-6xl mx-auto text-center">
             <h2 class="font-script text-5xl text-sky-800 mb-12" data-aos="fade-up">Momen Bahagia</h2>
@@ -269,7 +259,6 @@
         </div>
     </section>
 
-    <!-- Wedding Gift Section -->
     <section id="gift" class="py-20 px-6 bg-white">
         <div class="max-w-4xl mx-auto text-center">
             <div data-aos="fade-up">
@@ -278,9 +267,7 @@
                 <p class="text-gray-600 leading-relaxed mb-8">
                     Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Namun jika memberi adalah ungkapan tanda kasih, Anda dapat memberi kado secara cashless.
                 </p>
-                <!-- Container for side-by-side gifts -->
                 <div class="flex flex-col md:flex-row justify-center items-center gap-8">
-                    <!-- Bank Muamalat -->
                     <div class="w-full md:w-1/2 bg-sky-50 p-6 rounded-lg shadow-inner">
                         <p class="text-lg font-semibold text-sky-900">Bank Muamalat</p>
                         <p id="rekening-muamalat" class="text-2xl font-bold text-gray-800 my-2">8010117178</p>
@@ -290,7 +277,6 @@
                             Salin No. Rekening
                         </button>
                     </div>
-                    <!-- BRI -->
                     <div class="w-full md:w-1/2 bg-sky-50 p-6 rounded-lg shadow-inner">
                         <p class="text-lg font-semibold text-sky-900">BRI</p>
                         <p id="rekening-bri" class="text-2xl font-bold text-gray-800 my-2">504201016983530</p>
@@ -305,7 +291,6 @@
         </div>
     </section>
 
-    <!-- Guestbook Section -->
     <section id="guestbook" class="py-20 px-6 bg-sky-50">
         <div class="max-w-4xl mx-auto">
             <div class="text-center mb-12" data-aos="fade-up">
@@ -329,19 +314,18 @@
             </div>
 
             <div id="ucapanList" class="mt-12 space-y-6">
-                <!-- Wishes will be displayed here -->
-            </div>
+                </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="py-12 bg-sky-800 text-white text-center">
         <p>Terima kasih atas doa restu Anda</p>
         <p class="font-script text-4xl my-4">Rama & Rin</p>
-        <p class="text-sm text-sky-100">&copy; 2025. nisaDev.</p>
+        <p class="text-sm text-sky-100">© 2025. nisaDev.</p>
     </footer>
 
-    <!-- AOS Script -->
+</main>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({
@@ -350,17 +334,82 @@
         });
     </script>
     
-    <!-- Lucide Icons Script -->
     <script>
         lucide.createIcons();
     </script>
 
-    <!-- Custom JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            
+            // === SCRIPT BARU UNTUK OVERLAY & ANIMASI SAKURA ===
+            const playOverlay = document.getElementById('playOverlay');
+            const playButton = document.getElementById('playButton');
+            const mainContent = document.getElementById('main-content');
+            const audio = document.getElementById('backgroundMusic');
+            
+            playButton.addEventListener('click', () => {
+                // Mainkan musik
+                audio.play();
+                
+                // Mulai animasi sakura
+                startSakuraAnimation();
+                
+                // Sembunyikan overlay dengan fade out
+                playOverlay.style.opacity = '0';
+                playOverlay.style.visibility = 'hidden';
+                
+                // Tampilkan konten utama dengan fade in
+                mainContent.style.opacity = '1';
+                
+                // Aktifkan scroll
+                document.body.style.overflow = 'auto';
+            });
+
+            function createSakura() {
+                const container = document.getElementById('sakura-container');
+                const sakuraPetal = document.createElement('div');
+                sakuraPetal.classList.add('sakura-petal');
+                
+                // Randomisasi untuk efek natural
+                const size = Math.random() * 20 + 10; // Ukuran acak antara 10px dan 30px
+                const startPosition = Math.random() * 100; // Posisi mulai horizontal acak
+                const duration = Math.random() * 5 + 8; // Durasi jatuh acak antara 8-13 detik
+                const delay = Math.random() * 5; // Penundaan acak
+                const wind = (Math.random() - 0.5) * 200 + 'px'; // Efek angin acak ke kiri/kanan
+
+                sakuraPetal.style.width = `${size}px`;
+                sakuraPetal.style.height = `${size}px`;
+                sakuraPetal.style.left = `${startPosition}vw`;
+                sakuraPetal.style.animationDuration = `${duration}s`;
+                sakuraPetal.style.animationDelay = `${delay}s`;
+                
+                // Menggunakan CSS variable untuk efek angin di keyframe
+                sakuraPetal.style.setProperty('--wind-effect', wind);
+                
+                container.appendChild(sakuraPetal);
+
+                // Hapus kelopak setelah animasi selesai untuk performa
+                sakuraPetal.addEventListener('animationend', () => {
+                    sakuraPetal.remove();
+                });
+            }
+
+            function startSakuraAnimation() {
+                // Buat 30 kelopak sakura awal
+                for (let i = 0; i < 30; i++) {
+                    createSakura();
+                }
+                // Tambah kelopak baru setiap detik
+                setInterval(createSakura, 1000); 
+            }
+            
+            // Sembunyikan konten utama & nonaktifkan scroll saat overlay aktif
+            mainContent.style.opacity = '0';
+            document.body.style.overflow = 'hidden';
+            // === AKHIR SCRIPT BARU ===
+            
+            
             // Countdown Timer
-            // Note: The event time is set to 10:00 WITA (GMT+8), but the code uses a local time string.
-            // For production, you should use a UTC-based timestamp or handle time zones carefully.
             const countdownDate = new Date("September 4, 2025 10:00:00").getTime();
 
             const countdownFunction = setInterval(function() {
@@ -372,7 +421,6 @@
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                // Update countdown in the hero section
                 const heroDays = document.getElementById("hero-days");
                 const heroHours = document.getElementById("hero-hours");
                 const heroMinutes = document.getElementById("hero-minutes");
@@ -401,34 +449,38 @@
 
                 if (copyButton) {
                     copyButton.addEventListener('click', () => {
-                        const tempInput = document.createElement('input');
-                        tempInput.value = rekeningNumber;
-                        document.body.appendChild(tempInput);
-                        tempInput.select();
-                        document.execCommand('copy');
-                        document.body.removeChild(tempInput);
+                        navigator.clipboard.writeText(rekeningNumber).then(() => {
+                            const originalText = copyButton.innerHTML;
+                            copyButton.innerHTML = 'Berhasil disalin!';
+                            setTimeout(() => {
+                                copyButton.innerHTML = originalText;
+                                lucide.createIcons(); // Re-render icon
+                            }, 2000);
+                        });
                     });
                 }
             }
             
-            // Setup copy buttons for both accounts
-            setupCopyButton('copyButton-muamalat', 'rekening-muamalat', 'copyMessage-muamalat');
-            setupCopyButton('copyButton-bri', 'rekening-bri', 'copyMessage-bri');
+            setupCopyButton('copyButton-muamalat', 'rekening-muamalat');
+            setupCopyButton('copyButton-bri', 'rekening-bri');
             
             // Music Control
-            const backgroundMusic = document.getElementById('backgroundMusic');
             const musicControl = document.getElementById('musicControl');
             const musicIcon = document.getElementById('musicIcon');
-            let isPlaying = false;
+            let isPlaying = true; // Musik otomatis play saat undangan dibuka
+
+            // Update icon saat musik pertama kali dimainkan
+            musicIcon.classList.remove('fa-play');
+            musicIcon.classList.add('fa-pause');
 
             if (musicControl) {
                 musicControl.addEventListener('click', () => {
                     if (isPlaying) {
-                        backgroundMusic.pause();
+                        audio.pause();
                         musicIcon.classList.remove('fa-pause');
                         musicIcon.classList.add('fa-play');
                     } else {
-                        backgroundMusic.play();
+                        audio.play();
                         musicIcon.classList.remove('fa-play');
                         musicIcon.classList.add('fa-pause');
                     }
@@ -449,7 +501,7 @@
                         <div class="flex items-start">
                             <div class="flex-shrink-0">
                                 <span class="inline-flex items-center justify-center h-10 w-10 rounded-full bg-sky-100">
-                                    <span class="font-medium text-sky-800">${item.name.charAt(0)}</span>
+                                    <span class="font-medium text-sky-800">${item.name.charAt(0).toUpperCase()}</span>
                                 </span>
                             </div>
                             <div class="ml-4">
@@ -484,23 +536,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
