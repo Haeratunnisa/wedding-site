@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Wedding of Rama & Rin</title>
     
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Google Fonts: Lora and Playfair Display -->
@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome -->
+    <!-- Font Awesome (for music icon) -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
     <!-- Lucide Icons -->
@@ -21,23 +21,22 @@
 
     <!-- AOS (Animate On Scroll) Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
+
+    <!-- Custom CSS Styles -->
     <style>
-        /* Custom styles and theme extensions */
+        /* === Custom Typography & Palet Warna === */
         body {
             font-family: 'Lora', serif;
             background-color: #F0F8FF; /* Warna dasar Biru Langit */
-            overflow: hidden; /* Mencegah scroll saat overlay aktif */
+            overflow-y: scroll; /* Mengizinkan scroll vertikal */
         }
         .font-script {
             font-family: 'Playfair Display', serif;
         }
-        
-        /* === PALET WARNA TEMA BIRU LANGIT === */
         .bg-sky-50 { background-color: #F0F8FF; }
         .bg-sky-100 { background-color: #E0F2FE; }
-        .text-sky-800 { color: #075985; } /* Biru Tua */
-        .text-sky-600 { color: #0EA5E9; } /* Biru Langit */
+        .text-sky-800 { color: #075985; }
+        .text-sky-600 { color: #0EA5E9; }
         .border-sky-800 { border-color: #075985; }
         .ring-sky-600:focus { --tw-ring-color: #0EA5E9; }
         .btn-custom {
@@ -49,7 +48,7 @@
             background-color: #0369A1;
         }
 
-        /* === STYLE UNTUK TRANSIFSI & ANIMASI === */
+        /* === Styles for Transitions & Animations === */
         #playOverlay {
             transition: opacity 1.5s ease-in-out, backdrop-filter 1.5s ease-in-out;
         }
@@ -66,7 +65,7 @@
         .overlay-text { opacity: 0; animation-delay: 0.5s; }
         .overlay-button { opacity: 0; animation-delay: 0.8s; }
 
-        /* Kontainer Animasi */
+        /* Sakura Animation Container */
         #sakura-container {
             position: fixed;
             top: 0; left: 0;
@@ -75,8 +74,7 @@
             overflow: hidden;
             z-index: 999;
         }
-
-        /* Animasi Bunga Sakura */
+        /* Sakura Petal Animation */
         .sakura-petal {
             position: absolute;
             top: -50px;
@@ -188,7 +186,7 @@
         <div class="container mx-auto max-w-4xl text-center" data-aos="fade-up">
             <h2 class="text-4xl md:text-5xl font-script text-sky-800 mb-8">📍 Lokasi Acara</h2>
             <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-lg mt-8">
-                <iframe src="https://www.google.com/maps/embed?pb=!1e3!4m2!3m1!1s0x2da159982780a96b:0x5e5bce90c1f5d68d" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=...PASTE_YOUR_MAP_EMBED_CODE_HERE...d" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <a href="https://maps.app.goo.gl/wS78pG17T5fJkE5w8" target="_blank" class="inline-block mt-8 btn-custom py-3 px-6 rounded-lg font-semibold"><i class="fas fa-map-marker-alt mr-2"></i>Buka di Google Maps</a>
         </div>
@@ -209,12 +207,12 @@
         <div class="max-w-6xl mx-auto text-center">
             <h2 class="font-script text-5xl text-sky-800 mb-12" data-aos="fade-up">Momen Bahagia</h2>
             <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                <div data-aos="zoom-in-up"><img src="https://lh3.googleusercontent.com/d/1f8UAGNjJAEzNq6Jj6C6MuGz3m6i0oyBS" alt="Gallery Photo 1" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300"></div>
-                <div data-aos="zoom-in-up" data-aos-delay="100"><img src="https://lh3.googleusercontent.com/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps" alt="Gallery Photo 2" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300"></div>
-                <div data-aos="zoom-in-up" data-aos-delay="200"><img src="https://lh3.googleusercontent.com/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps" alt="Gallery Photo 3" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300"></div>
-                <div data-aos="zoom-in-up" data-aos-delay="300"><img src="https://lh3.googleusercontent.com/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps" alt="Gallery Photo 4" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300"></div>
-                <div data-aos="zoom-in-up" data-aos-delay="400"><img src="https://lh3.googleusercontent.com/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps" alt="Gallery Photo 5" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300"></div>
-                <div data-aos="zoom-in-up" data-aos-delay="500"><img src="https://lh3.googleusercontent.com/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps" alt="Gallery Photo 6" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300"></div>
+                <div data-aos="zoom-in-up"><img src="https://lh3.googleusercontent.com/d/1f8UAGNjJAEzNq6Jj6C6MuGz3m6i0oyBS" alt="Gallery Photo 1" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x600/f3f4f6/075985?text=Gambar+Tidak+Tersedia';"></div>
+                <div data-aos="zoom-in-up" data-aos-delay="100"><img src="https://lh3.googleusercontent.com/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps" alt="Gallery Photo 2" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x600/f3f4f6/075985?text=Gambar+Tidak+Tersedia';"></div>
+                <div data-aos="zoom-in-up" data-aos-delay="200"><img src="https://lh3.googleusercontent.com/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps" alt="Gallery Photo 3" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x600/f3f4f6/075985?text=Gambar+Tidak+Tersedia';"></div>
+                <div data-aos="zoom-in-up" data-aos-delay="300"><img src="https://lh3.googleusercontent.com/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps" alt="Gallery Photo 4" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x600/f3f4f6/075985?text=Gambar+Tidak+Tersedia';"></div>
+                <div data-aos="zoom-in-up" data-aos-delay="400"><img src="https://lh3.googleusercontent.com/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps" alt="Gallery Photo 5" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x600/f3f4f6/075985?text=Gambar+Tidak+Tersedia';"></div>
+                <div data-aos="zoom-in-up" data-aos-delay="500"><img src="https://lh3.googleusercontent.com/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps" alt="Gallery Photo 6" class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transform transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x600/f3f4f6/075985?text=Gambar+Tidak+Tersedia';"></div>
             </div>
         </div>
     </section>
@@ -254,7 +252,7 @@
         </div>
     </section>
 
-    <!-- Guestbook Section -->
+    <!-- Guestbook Section (Firestone Integrated) -->
     <section id="guestbook" class="py-20 px-6 bg-sky-50">
         <div class="max-w-4xl mx-auto">
             <div class="text-center mb-12" data-aos="fade-up">
@@ -289,117 +287,151 @@
     
 </main>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({ duration: 1000, once: true });
-        lucide.createIcons();
+<!-- Scripts -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script type="module">
+    // Firebase SDKs
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Fungsi Salin Rekening
-        function copyToClipboard(elementId, buttonElement) {
-            const textToCopy = document.getElementById(elementId).innerText;
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                const btnText = buttonElement.querySelector('.btn-text');
-                const originalText = btnText.innerText;
-                btnText.innerText = 'Berhasil disalin!';
-                setTimeout(() => {
-                    btnText.innerText = originalText;
-                }, 2000);
-            }).catch(err => {
-                console.error('Gagal menyalin: ', err);
-            });
+    // Initialize AOS and Lucide icons
+    AOS.init({ duration: 1000, once: true });
+    lucide.createIcons();
+
+    // Fungsi Salin Rekening ke Clipboard
+    function copyToClipboard(elementId, buttonElement) {
+        const textToCopy = document.getElementById(elementId).innerText;
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            const btnText = buttonElement.querySelector('.btn-text');
+            const originalText = btnText.innerText;
+            btnText.innerText = 'Berhasil disalin!';
+            setTimeout(() => {
+                btnText.innerText = originalText;
+            }, 2000);
+        }).catch(err => {
+            console.error('Gagal menyalin: ', err);
+            // Tambahkan pesan error untuk pengguna jika gagal
+        });
+    }
+    window.copyToClipboard = copyToClipboard;
+
+    document.addEventListener('DOMContentLoaded', async function() {
+        // Inisialisasi Firebase
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+
+        let db, auth;
+        try {
+            const app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            auth = getAuth(app);
+            
+            // Otentikasi pengguna secara anonim
+            const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+            if (initialAuthToken) {
+                await signInWithCustomToken(auth, initialAuthToken);
+            } else {
+                await signInAnonymously(auth);
+            }
+        } catch (e) {
+            console.error("Firebase initialization or authentication failed:", e);
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
+        // Dapatkan elemen UI
+        const playButton = document.getElementById('playButton');
+        const audio = document.getElementById('backgroundMusic');
+        const playOverlay = document.getElementById('playOverlay');
+        const musicControl = document.getElementById('musicControl');
+        const musicIcon = document.getElementById('musicIcon');
+        const guestbookForm = document.getElementById('guestbookForm');
+        const ucapanList = document.getElementById('ucapanList');
+        let isSakuraStarted = false;
+
+        // === LOGIKA OVERLAY & MUSIK ===
+        playButton.addEventListener('click', () => {
+            audio.play().catch(e => console.log("Autoplay dicegah."));
             
-            const playButton = document.getElementById('playButton');
-            const audio = document.getElementById('backgroundMusic');
-            let isSakuraStarted = false; // Flag untuk memastikan animasi hanya dimulai sekali
+            // Sembunyikan overlay dan aktifkan scroll
+            playOverlay.classList.add('hidden');
+            document.documentElement.style.overflow = 'auto'; // Mengaktifkan scroll
+            
+            // Hapus overlay setelah transisi selesai
+            playOverlay.addEventListener('transitionend', () => playOverlay.remove(), { once: true });
 
-            playButton.addEventListener('click', () => {
-                audio.play().catch(e => console.log("Autoplay dicegah."));
-                
-                const playOverlay = document.getElementById('playOverlay');
-                playOverlay.classList.add('hidden');
-                document.body.style.overflow = 'auto';
-                playOverlay.addEventListener('transitionend', () => playOverlay.remove(), { once: true });
-            });
-
-            // Event listener untuk memulai animasi saat scroll
-            window.addEventListener('scroll', () => {
-                // Mulai animasi hanya jika belum dimulai dan overlay sudah hilang
-                if (!isSakuraStarted && !document.getElementById('playOverlay')) {
-                    startSakuraAnimation();
-                    isSakuraStarted = true; // Set flag agar tidak berjalan lagi
-                }
-            }, { once: true }); // Opsi {once: true} membuat listener ini hanya berjalan sekali
-
-            function createSakura() {
-                const container = document.getElementById('sakura-container');
-                if (!container) return;
-                const sakuraPetal = document.createElement('div');
-                sakuraPetal.className = 'sakura-petal';
-                
-                const size = Math.random() * 20 + 10;
-                const position = Math.random() * 100;
-                const duration = Math.random() * 5 + 8;
-                const delay = Math.random() * 5;
-                const wind = (Math.random() - 0.5) * 200 + 'px';
-
-                sakuraPetal.style.width = `${size}px`;
-                sakuraPetal.style.height = `${size}px`;
-                sakuraPetal.style.left = `${position}vw`;
-                sakuraPetal.style.animationDuration = `${duration}s`;
-                sakuraPetal.style.animationDelay = `${delay}s`;
-                sakuraPetal.style.setProperty('--wind-effect', wind);
-                
-                container.appendChild(sakuraPetal);
-                sakuraPetal.addEventListener('animationend', () => sakuraPetal.remove());
+            // Mulai animasi sakura setelah overlay hilang
+            if (!isSakuraStarted) {
+                startSakuraAnimation();
+                isSakuraStarted = true;
             }
-            
-            function startSakuraAnimation() {
-                for (let i = 0; i < 30; i++) createSakura();
-                setInterval(createSakura, 1000); 
+        });
+
+        // Music Control
+        musicControl.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                musicIcon.classList.replace('fa-play', 'fa-pause');
+            } else {
+                audio.pause();
+                musicIcon.classList.replace('fa-pause', 'fa-play');
             }
+        });
+
+        // === ANIMASI SAKURA ===
+        function createSakura() {
+            const container = document.getElementById('sakura-container');
+            if (!container) return;
+            const sakuraPetal = document.createElement('div');
+            sakuraPetal.className = 'sakura-petal';
             
-            // Countdown Timer
-            const countdownDate = new Date("September 4, 2025 10:00:00").getTime();
-            const countdownInterval = setInterval(() => {
-                const distance = countdownDate - new Date().getTime();
-                const countdownElement = document.getElementById("countdown");
+            const size = Math.random() * 20 + 10;
+            const position = Math.random() * 100;
+            const duration = Math.random() * 5 + 8;
+            const delay = Math.random() * 5;
+            const wind = (Math.random() - 0.5) * 200 + 'px';
 
-                if (distance < 0) {
-                    clearInterval(countdownInterval);
-                    if (countdownElement) countdownElement.innerHTML = "<div class='text-2xl text-white'>ACARA TELAH DIMULAI</div>";
-                    return;
-                }
-                document.getElementById("hero-days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
-                document.getElementById("hero-hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
-                document.getElementById("hero-minutes").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
-                document.getElementById("hero-seconds").innerText = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
-            }, 1000);
-
-            // Music Control
-            const musicControl = document.getElementById('musicControl');
-            musicControl.addEventListener('click', () => {
-                const musicIcon = document.getElementById('musicIcon');
-                if (audio.paused) {
-                    audio.play();
-                    musicIcon.classList.replace('fa-play', 'fa-pause');
-                } else {
-                    audio.pause();
-                    musicIcon.classList.replace('fa-pause', 'fa-play');
-                }
-            });
-
-            // Guestbook
-            const guestbookForm = document.getElementById('guestbookForm');
-            const ucapanList = document.getElementById('ucapanList');
-            let wishes = JSON.parse(localStorage.getItem('weddingWishes')) || [];
+            sakuraPetal.style.width = `${size}px`;
+            sakuraPetal.style.height = `${size}px`;
+            sakuraPetal.style.left = `${position}vw`;
+            sakuraPetal.style.animationDuration = `${duration}s`;
+            sakuraPetal.style.animationDelay = `${delay}s`;
+            sakuraPetal.style.setProperty('--wind-effect', wind);
             
-            function displayWishes() {
+            container.appendChild(sakuraPetal);
+            sakuraPetal.addEventListener('animationend', () => sakuraPetal.remove());
+        }
+        function startSakuraAnimation() {
+            for (let i = 0; i < 30; i++) createSakura();
+            setInterval(createSakura, 1000); 
+        }
+        
+        // === LOGIKA COUNTDOWN TIMER ===
+        const countdownDate = new Date("September 4, 2025 10:00:00").getTime();
+        const countdownInterval = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+            const countdownElement = document.getElementById("countdown");
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                if (countdownElement) countdownElement.innerHTML = "<div class='text-2xl text-white'>ACARA TELAH DIMULAI</div>";
+                return;
+            }
+            document.getElementById("hero-days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+            document.getElementById("hero-hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+            document.getElementById("hero-minutes").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+            document.getElementById("hero-seconds").innerText = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
+        }, 1000);
+
+        // === GUESTBOOK DENGAN FIRESTORE ===
+        if (db) {
+            const guestbookCollection = collection(db, `artifacts/${appId}/public/data/wedding_wishes`);
+            
+            // Listen to real-time updates from Firestore
+            onSnapshot(query(guestbookCollection, orderBy("timestamp", "desc")), (snapshot) => {
                 ucapanList.innerHTML = '';
-                wishes.forEach(item => {
+                snapshot.docs.forEach(doc => {
+                    const item = doc.data();
                     const wishElement = document.createElement('div');
                     wishElement.className = 'bg-white p-6 rounded-lg shadow-md';
                     wishElement.innerHTML = `
@@ -412,22 +444,30 @@
                             <div class="ml-4">
                                 <p class="font-semibold text-sky-800">${item.name}</p>
                                 <p class="text-gray-600 mt-1">${item.wish}</p>
+                                <p class="text-xs text-gray-400 mt-1">${new Date(item.timestamp.toDate()).toLocaleString()}</p>
                             </div>
                         </div>`;
                     ucapanList.appendChild(wishElement);
                 });
-            }
-            displayWishes();
-
-            guestbookForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const newWish = { name: e.target.nama.value, wish: e.target.ucapan.value };
-                wishes.unshift(newWish);
-                localStorage.setItem('weddingWishes', JSON.stringify(wishes));
-                displayWishes();
-                guestbookForm.reset();
             });
-        });
-    </script>
+
+            // Form submission handler to add new wishes to Firestore
+            guestbookForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                const newWish = { 
+                    name: e.target.nama.value, 
+                    wish: e.target.ucapan.value,
+                    timestamp: new Date()
+                };
+                try {
+                    await addDoc(guestbookCollection, newWish);
+                    guestbookForm.reset();
+                } catch (e) {
+                    console.error("Error adding document: ", e);
+                }
+            });
+        }
+    });
+</script>
 </body>
 </html>
