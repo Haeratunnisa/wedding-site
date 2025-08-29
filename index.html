@@ -1,46 +1,95 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Wedding of Putra & Putri</title>
-
-    <!-- Tailwind CSS for styling -->
+    <title>The Wedding of Rama & Rin</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Google Fonts for elegant typography -->
+    
+    <!-- Google Fonts: Lora and Playfair Display -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- AOS (Animate On Scroll) Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
-        /* Custom styles for fonts and animations */
+        /* Custom styles and theme extensions */
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #FDF8F5; /* Soft cream background */
-            color: #5D4037; /* Dark brown text for contrast */
+            font-family: 'Lora', serif;
+            background-color: #F0F8FF; /* Warna dasar Biru Langit */
+            overflow: hidden; /* Mencegah scroll saat overlay aktif */
         }
-        .font-heading {
+        .font-script {
             font-family: 'Playfair Display', serif;
         }
-        #sakura-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1; /* Place canvas behind all content */
-            pointer-events: none; /* Allow clicks to pass through */
+        
+        /* === PALET WARNA TEMA BIRU LANGIT === */
+        .bg-sky-50 { background-color: #F0F8FF; }
+        .bg-sky-100 { background-color: #E0F2FE; }
+        .text-sky-800 { color: #075985; } /* Biru Tua */
+        .text-sky-600 { color: #0EA5E9; } /* Biru Langit */
+        .border-sky-800 { border-color: #075985; }
+        .ring-sky-600:focus { --tw-ring-color: #0EA5E9; }
+        .btn-custom {
+            background-color: #075985;
+            color: #FFFFFF;
+            transition: background-color 0.3s ease;
         }
-        /* Animation for sections fading in on scroll */
-        .reveal-on-scroll {
+        .btn-custom:hover {
+            background-color: #0369A1;
+        }
+
+        /* === STYLE UNTUK TRANSIFSI & ANIMASI === */
+        #playOverlay {
+            transition: opacity 1.5s ease-in-out, backdrop-filter 1.5s ease-in-out;
+        }
+        #playOverlay.hidden {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            pointer-events: none;
+            backdrop-filter: blur(0px);
         }
-        .reveal-on-scroll.visible {
-            opacity: 1;
-            transform: translateY(0);
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in-up { animation: fadeInUp 1s ease-out forwards; }
+        .overlay-text { opacity: 0; animation-delay: 0.5s; }
+        .overlay-button { opacity: 0; animation-delay: 0.8s; }
+
+        /* Kontainer Animasi */
+        #sakura-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 999;
+        }
+
+        /* Animasi Bunga Sakura */
+        .sakura-petal {
+            position: absolute;
+            top: -50px;
+            background-image: url('https://png.pngtree.com/png-clipart/20230401/original/pngtree-cherry-blossom-sakura-petals-falling-png-image_9011952.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            animation: fall linear;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(105vh) translateX(var(--wind-effect)) rotate(720deg);
+                opacity: 0;
+            }
         }
     </style>
 </head>
@@ -51,16 +100,27 @@
 
 <!-- Audio Player -->
 <audio id="backgroundMusic" loop>
-    <source src="https://cdn.pixabay.com/audio/2022/02/04/audio_29158b0e52.mp3" type="audio/mpeg">
+    <source src="https://raw.githubusercontent.com/Haeratunnisa/wedding-site/main/audio/You%20Are%20The%20Reason.mp3" type="audio/mpeg">
     Browser Anda tidak mendukung tag audio.
 </audio>
       
 <!-- Overlay Pembuka Undangan -->
-<div id="playOverlay" class="fixed inset-0 flex flex-col items-center justify-center backdrop-blur-md bg-gray-900/50 z-[9999] text-center text-white p-4">
+<!--<div id="playOverlay" class="fixed inset-0 flex flex-col items-center justify-center backdrop-blur-md bg-gray-900/50 z-[9999] text-center text-white p-4">
     <p class="text-xl md:text-2xl mb-6 font-script fade-in-up overlay-text">Kami mengundang Anda untuk merayakan hari bahagia kami</p>
     <button id="playButton" class="py-3 px-6 text-lg rounded-full bg-white/20 text-white border border-white hover:bg-white/40 transition-all duration-300 shadow-lg fade-in-up overlay-button">
         💌 Buka Undangan 💌
     </button>
+</div> -->
+<div id="cover" class="fixed inset-0 bg-cover bg-center bg-no-repeat z-50 flex flex-col items-center justify-center text-center p-8 transition-opacity duration-1000" style="background-image: url('https://placehold.co/1080x1920/FDF8F5/5D4037?text=Foto+Pre-wedding'); background-color: rgba(253, 248, 245, 0.8); background-blend-mode: overlay;">
+    <div class="bg-white/70 backdrop-blur-sm p-8 rounded-lg shadow-xl">
+        <p class="text-lg md:text-xl text-stone-700">The Wedding Of</p>
+        <h1 class="font-heading text-5xl md:text-7xl text-rose-800 my-4">Rama & Rin</h1>
+        <p class="text-md text-stone-600 mt-8">Kepada Yth. Bapak/Ibu/Saudara/i</p>
+        <p id="guest-name" class="text-xl font-bold text-stone-800 mt-2">Tamu Undangan</p>
+        <button id="playButton" class="py-3 px-6 text-lg rounded-full bg-white/20 text-white border border-white hover:bg-white/40 transition-all duration-300 shadow-lg fade-in-up overlay-button">
+               💌 Buka Undangan 💌
+        </button>
+    </div>
 </div>
 
 <!-- Main Content -->
@@ -382,5 +442,3 @@
     </script>
 </body>
 </html>
-
-
