@@ -161,69 +161,64 @@
         <div class="absolute bottom-10 z-20 animate-bounce"><i data-lucide="chevrons-down" class="w-8 h-8 text-white"></i></div>
     </section> -->
 <!-- Hero Section -->
-<section id="hero" class="relative h-screen flex flex-col items-center justify-center text-white text-center overflow-hidden">
+<section id="hero" class="relative min-h-screen flex flex-col items-center justify-center text-center text-white overflow-hidden p-4">
     <!-- Background -->
     <div class="absolute inset-0 bg-cover bg-center" 
-         style="background-image: url('https://lh3.googleusercontent.com/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps'); 
-                filter: brightness(0.6);">
-    </div>
+         style="background-image: url('bg.jpg'); filter: brightness(0.6);"></div>
 
-    <!-- Glassmorphism Card -->
-    <div class="relative z-10 bg-white/20 backdrop-blur-lg rounded-2xl shadow-xl p-8 md:p-12 max-w-2xl mx-auto space-y-6" data-aos="fade-up">
+    <!-- Konten -->
+    <div class="relative z-10 max-w-2xl w-full space-y-6">
 
-        <!-- Kaligrafi Jepang + Cina -->
-        <div class="mb-4">
-            <img src="https://lh3.googleusercontent.com/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps" 
-                 alt="Kaligrafi Jepang Cina" 
-                 class="mx-auto w-40 md:w-56">
-        </div>
+        <!-- Nama mempelai -->
+        <h1 class="font-script text-4xl md:text-5xl text-white">Maura</h1>
+        <h1 class="font-script text-4xl md:text-5xl text-white">&</h1>
+        <h1 class="font-script text-4xl md:text-5xl text-white">Alif</h1>
 
-        <!-- Frame Foto -->
-        <div class="relative w-48 h-48 md:w-64 md:h-64 mx-auto mb-4 border-4 border-white/40 rounded-xl overflow-hidden shadow-lg">
-            <img src="https://your-link-to-photo.png" 
-                 alt="Foto Mempelai" 
-                 class="w-full h-full object-cover">
-        </div>
-
-        <!-- Nama Mempelai -->
-        <h1 class="font-script text-3xl md:text-4xl text-white">Rama & Rin</h1>
-
-        <!-- Deskripsi Acara -->
-        <p class="text-sm md:text-base text-gray-100">
-            Akan Melangsungkan Akad dan Walimatul 'Urs (Resepsi)
+        <!-- Deskripsi -->
+        <p class="text-base md:text-lg mt-2">
+            Akan Melangsungkan Akad dan Walimatul ’Urs (Resepsi)
         </p>
-        <p class="italic text-gray-200">InsyaAllah</p>
+        <p class="italic text-sm md:text-base">InsyaAllah</p>
 
         <!-- Tanggal -->
-        <div class="flex flex-col items-center mt-4">
-            <span class="text-lg md:text-xl">Kamis</span>
-            <div class="bg-white/30 rounded-lg px-6 py-4 text-4xl md:text-6xl font-bold mt-2 mb-2">
-                04
+        <div class="mt-4">
+            <div class="grid grid-cols-3 items-center text-center gap-4">
+                <span class="text-sm md:text-base font-medium border-b border-white/40 pb-1">Kamis</span>
+                
+                <div class="text-5xl md:text-7xl font-bold">
+                    12
+                </div>
+                
+                <span class="text-sm md:text-base font-medium border-b border-white/40 pb-1">2024</span>
             </div>
-            <span class="text-lg md:text-xl">September 2025</span>
+            <p class="mt-2 text-lg md:text-xl font-semibold">Desember</p>
         </div>
 
         <!-- Countdown -->
-        <div id="countdown" class="flex justify-center space-x-6 md:space-x-10 mt-6 text-base md:text-lg">
-            <div>
-                <span id="hero-days" class="block text-3xl md:text-5xl font-bold">00</span>
-                <span>Hari</span>
-            </div>
-            <div>
-                <span id="hero-hours" class="block text-3xl md:text-5xl font-bold">00</span>
-                <span>Jam</span>
-            </div>
-            <div>
-                <span id="hero-minutes" class="block text-3xl md:text-5xl font-bold">00</span>
-                <span>Menit</span>
-            </div>
-            <div>
-                <span id="hero-seconds" class="block text-3xl md:text-5xl font-bold">00</span>
-                <span>Detik</span>
+        <div class="mt-6">
+            <p class="mb-2 text-sm md:text-base">Acara akan dimulai dalam</p>
+            <div id="countdown" class="grid grid-cols-2 md:grid-cols-4 gap-4 justify-center">
+                <div>
+                    <span id="days" class="block text-3xl md:text-4xl font-bold">00</span>
+                    <span class="text-xs md:text-sm">Hari</span>
+                </div>
+                <div>
+                    <span id="hours" class="block text-3xl md:text-4xl font-bold">00</span>
+                    <span class="text-xs md:text-sm">Jam</span>
+                </div>
+                <div>
+                    <span id="minutes" class="block text-3xl md:text-4xl font-bold">00</span>
+                    <span class="text-xs md:text-sm">Menit</span>
+                </div>
+                <div>
+                    <span id="seconds" class="block text-3xl md:text-4xl font-bold">00</span>
+                    <span class="text-xs md:text-sm">Detik</span>
+                </div>
             </div>
         </div>
     </div>
 </section>
+
 
 
     <!-- Invitation Section -->
@@ -520,6 +515,7 @@
     </script>
 </body>
 </html>
+
 
 
 
