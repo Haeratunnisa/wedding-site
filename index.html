@@ -164,15 +164,16 @@
 <section id="hero" class="relative min-h-screen flex flex-col items-center justify-center text-center text-white overflow-hidden p-4">
     <!-- Background -->
     <div class="absolute inset-0 bg-cover bg-center" 
-         style="background-image: url('bg.jpg'); filter: brightness(0.6);"></div>
+         style="background-image: url('https://lh3.googleusercontent.com/d/1ijcZoamdBSD15PxWu4TFr3k8ELO_Zfps'); filter: brightness(0.6);">
+    </div>
 
-    <!-- Konten -->
+    <!-- Glassmorphism Card -->
     <div class="relative z-10 max-w-2xl w-full space-y-6">
 
         <!-- Nama mempelai -->
-        <h1 class="font-script text-4xl md:text-5xl text-white">Maura</h1>
-        <h1 class="font-script text-4xl md:text-5xl text-white">&</h1>
-        <h1 class="font-script text-4xl md:text-5xl text-white">Alif</h1>
+        <h1 class="font-script text-4xl md:text-5xl text-white">
+            Rama <span class="mx-2">&</span> Miftah
+        </h1>
 
         <!-- Deskripsi -->
         <p class="text-base md:text-lg mt-2">
@@ -181,15 +182,18 @@
         <p class="italic text-sm md:text-base">InsyaAllah</p>
 
         <!-- Tanggal -->
-        <div class="mt-4">
-            <div class="grid grid-cols-3 items-center text-center gap-4">
-                <span class="text-sm md:text-base font-medium border-b border-white/40 pb-1">Kamis</span>
+        <div class="mt-4 flex flex-col items-center">
+            <div class="flex items-center gap-6">
+                <span class="text-sm md:text-base font-medium">Kamis</span>
                 
-                <div class="text-5xl md:text-7xl font-bold">
-                    12
+                <!-- Angka dengan garis vertikal -->
+                <div class="flex items-center">
+                    <div class="w-px h-12 bg-white/70"></div>
+                    <div class="px-4 text-5xl md:text-7xl font-bold">12</div>
+                    <div class="w-px h-12 bg-white/70"></div>
                 </div>
-                
-                <span class="text-sm md:text-base font-medium border-b border-white/40 pb-1">2024</span>
+
+                <span class="text-sm md:text-base font-medium">2024</span>
             </div>
             <p class="mt-2 text-lg md:text-xl font-semibold">Desember</p>
         </div>
@@ -218,7 +222,6 @@
         </div>
     </div>
 </section>
-
 
 
     <!-- Invitation Section -->
@@ -515,6 +518,7 @@
     </script>
 </body>
 </html>
+
 
 
 
