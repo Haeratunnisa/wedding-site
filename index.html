@@ -25,13 +25,15 @@
     <style>
         /* Custom styles and theme extensions */
         body {
-            font-family: 'Lora', serif;
+            font-family: 'Poppins', serif;
             background-color: #F0F8FF; /* Warna dasar Biru Langit */
             overflow: hidden; /* Mencegah scroll saat overlay aktif */
         }
         .font-script {
             font-family: 'Playfair Display', serif;
         }
+
+        
         
         /* === PALET WARNA TEMA BIRU LANGIT === */
         .bg-sky-50 { background-color: #F0F8FF; }
@@ -66,6 +68,26 @@
         .overlay-text { opacity: 0; animation-delay: 0.5s; }
         .overlay-button { opacity: 0; animation-delay: 0.8s; }
 
+        #sakura-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Place canvas behind all content */
+            pointer-events: none; /* Allow clicks to pass through */
+        }
+        /* Animation for sections fading in on scroll */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
         /* Kontainer Animasi */
         #sakura-container {
             position: fixed;
@@ -431,3 +453,4 @@
     </script>
 </body>
 </html>
+
