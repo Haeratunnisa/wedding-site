@@ -1,73 +1,28 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Wedding of Rama & Rin</title>
-    
-    <!-- Tailwind CSS -->
+    <title>The Wedding of Putra & Putri</title>
+
+    <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Lora and Playfair Display -->
+
+    <!-- Google Fonts for elegant typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <!-- AOS (Animate On Scroll) Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* Custom styles and theme extensions */
+        /* Custom styles for fonts and animations */
         body {
-            font-family: 'Poppins', serif;
-            background-color: #F0F8FF; /* Warna dasar Biru Langit */
-            overflow: hidden; /* Mencegah scroll saat overlay aktif */
+            font-family: 'Poppins', sans-serif;
+            background-color: #FDF8F5; /* Soft cream background */
+            color: #5D4037; /* Dark brown text for contrast */
         }
-        .font-script {
+        .font-heading {
             font-family: 'Playfair Display', serif;
         }
-
-        
-        
-        /* === PALET WARNA TEMA BIRU LANGIT === */
-        .bg-sky-50 { background-color: #F0F8FF; }
-        .bg-sky-100 { background-color: #E0F2FE; }
-        .text-sky-800 { color: #075985; } /* Biru Tua */
-        .text-sky-600 { color: #0EA5E9; } /* Biru Langit */
-        .border-sky-800 { border-color: #075985; }
-        .ring-sky-600:focus { --tw-ring-color: #0EA5E9; }
-        .btn-custom {
-            background-color: #075985;
-            color: #FFFFFF;
-            transition: background-color 0.3s ease;
-        }
-        .btn-custom:hover {
-            background-color: #0369A1;
-        }
-
-        /* === STYLE UNTUK TRANSIFSI & ANIMASI === */
-        #playOverlay {
-            transition: opacity 1.5s ease-in-out, backdrop-filter 1.5s ease-in-out;
-        }
-        #playOverlay.hidden {
-            opacity: 0;
-            pointer-events: none;
-            backdrop-filter: blur(0px);
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .fade-in-up { animation: fadeInUp 1s ease-out forwards; }
-        .overlay-text { opacity: 0; animation-delay: 0.5s; }
-        .overlay-button { opacity: 0; animation-delay: 0.8s; }
-
         #sakura-canvas {
             position: fixed;
             top: 0;
@@ -86,32 +41,6 @@
         .reveal-on-scroll.visible {
             opacity: 1;
             transform: translateY(0);
-        }
-        
-        /* Kontainer Animasi */
-        #sakura-container {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: 999;
-        }
-
-        /* Animasi Bunga Sakura */
-        .sakura-petal {
-            position: absolute;
-            top: -50px;
-            background-image: url('https://png.pngtree.com/png-clipart/20230401/original/pngtree-cherry-blossom-sakura-petals-falling-png-image_9011952.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            animation: fall linear;
-        }
-        @keyframes fall {
-            to {
-                transform: translateY(105vh) translateX(var(--wind-effect)) rotate(720deg);
-                opacity: 0;
-            }
         }
     </style>
 </head>
@@ -453,4 +382,5 @@
     </script>
 </body>
 </html>
+
 
